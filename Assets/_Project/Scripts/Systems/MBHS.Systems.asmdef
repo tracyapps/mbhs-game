@@ -1,0 +1,19 @@
+{
+    "name": "MBHS.Systems",
+    "rootNamespace": "MBHS.Systems",
+    "references": [
+        "MBHS.Core",
+        "MBHS.Data",
+        "Unity.Addressables",
+        "Unity.ResourceManager"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

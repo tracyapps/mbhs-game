@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../Styles/MainMenu.uss" />
+
+    <ui:VisualElement class="menu-root">
+        <ui:VisualElement class="menu-container">
+
+            <ui:Label text="MARCHING BAND" class="game-title" />
+            <ui:Label text="Halftime Show" class="game-subtitle" />
+
+            <ui:VisualElement class="menu-buttons">
+                <ui:Button text="New Show" name="btn-new-game" class="menu-btn primary" />
+                <ui:Button text="Continue" name="btn-continue" class="menu-btn" />
+                <ui:Button text="Formation Editor" name="btn-formation-editor" class="menu-btn" />
+                <ui:Button text="Settings" name="btn-settings" class="menu-btn" />
+                <ui:Button text="Quit" name="btn-quit" class="menu-btn" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+        <ui:Label text="v0.1.0 - Phase 1" class="version-label" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,120 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../Styles/FormationEditor.uss" />
+
+    <ui:VisualElement class="editor-root">
+
+        <!-- Left Panel: Formation List -->
+        <ui:VisualElement class="formation-panel">
+            <ui:Label text="Formations" class="panel-header" />
+            <ui:ScrollView class="formation-list" name="formation-list" />
+            <ui:Button text="+ Add Formation" name="btn-add-formation" class="formation-add-btn" />
+        </ui:VisualElement>
+
+        <!-- Center: Field and Toolbar -->
+        <ui:VisualElement class="field-area">
+
+            <!-- Toolbar -->
+            <ui:VisualElement class="toolbar">
+                <ui:Button text="Undo" name="btn-undo" class="toolbar-btn" />
+                <ui:Button text="Redo" name="btn-redo" class="toolbar-btn" />
+                <ui:VisualElement class="toolbar-separator" />
+                <ui:Button text="Select" name="btn-tool-select" class="toolbar-btn" />
+                <ui:Button text="Place" name="btn-tool-place" class="toolbar-btn" />
+                <ui:Button text="Delete" name="btn-tool-delete" class="toolbar-btn" />
+                <ui:VisualElement class="toolbar-separator" />
+                <ui:Toggle label="Snap" name="toggle-snap" value="true" />
+                <ui:VisualElement class="toolbar-separator" />
+                <ui:Button text="Zoom Fit" name="btn-zoom-fit" class="toolbar-btn" />
+                <ui:VisualElement class="toolbar-spacer" />
+                <ui:Label name="lbl-members-placed" class="toolbar-label" text="0 members placed" />
+                <ui:VisualElement class="toolbar-separator" />
+                <ui:Button text="Save" name="btn-save" class="toolbar-btn" />
+                <ui:Button text="Load" name="btn-load" class="toolbar-btn" />
+            </ui:VisualElement>
+
+            <!-- Football Field -->
+            <ui:VisualElement class="field-container" name="field-container">
+                <ui:VisualElement class="field-viewport" name="field-viewport" />
+            </ui:VisualElement>
+
+            <!-- Status Bar -->
+            <ui:VisualElement class="status-bar">
+                <ui:Label name="lbl-status" class="status-text" text="Ready" />
+                <ui:VisualElement class="status-spacer" />
+                <ui:Label name="lbl-coords" class="status-coords" text="" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+        <!-- Right Panel: Properties -->
+        <ui:VisualElement class="properties-panel">
+            <ui:Label text="Properties" class="panel-header" />
+
+            <!-- Shown when a member is selected -->
+            <ui:VisualElement name="member-properties" class="property-group">
+                <ui:Label text="Selected Member" class="property-group-title" />
+                <ui:VisualElement class="property-row">
+                    <ui:Label text="Name" class="property-label" />
+                    <ui:Label name="prop-member-name" class="property-value" text="--" />
+                </ui:VisualElement>
+                <ui:VisualElement class="property-row">
+                    <ui:Label text="Instrument" class="property-label" />
+                    <ui:Label name="prop-member-instrument" class="property-value" text="--" />
+                </ui:VisualElement>
+                <ui:VisualElement class="property-row">
+                    <ui:Label text="Field X" class="property-label" />
+                    <ui:FloatField name="prop-field-x" class="property-field" value="0" />
+                </ui:VisualElement>
+                <ui:VisualElement class="property-row">
+                    <ui:Label text="Field Y" class="property-label" />
+                    <ui:FloatField name="prop-field-y" class="property-field" value="0" />
+                </ui:VisualElement>
+                <ui:VisualElement class="property-row">
+                    <ui:Label text="Facing" class="property-label" />
+                    <ui:Slider name="prop-facing" low-value="0" high-value="360" class="property-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Formation properties -->
+            <ui:VisualElement name="formation-properties" class="property-group">
+                <ui:Label text="Formation" class="property-group-title" />
+                <ui:VisualElement class="property-row">
+                    <ui:Label text="Label" class="property-label" />
+                    <ui:TextField name="prop-formation-label" class="property-field" />
+                </ui:VisualElement>
+                <ui:VisualElement class="property-row">
+                    <ui:Label text="Start Beat" class="property-label" />
+                    <ui:FloatField name="prop-start-beat" class="property-field" value="0" />
+                </ui:VisualElement>
+                <ui:VisualElement class="property-row">
+                    <ui:Label text="Duration" class="property-label" />
+                    <ui:FloatField name="prop-duration" class="property-field" value="8" />
+                </ui:VisualElement>
+                <ui:VisualElement class="property-row">
+                    <ui:Label text="Members" class="property-label" />
+                    <ui:Label name="prop-member-count" class="member-count-badge" text="0" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- No selection message -->
+            <ui:Label name="no-selection-msg" class="no-selection-message"
+                      text="Select a member or formation to view properties" />
+
+            <!-- Spacer to push preview to bottom -->
+            <ui:VisualElement style="flex-grow: 1;" />
+
+            <!-- 3D Preview -->
+            <ui:VisualElement class="preview-panel">
+                <ui:Image name="preview-image" class="preview-image" />
+                <ui:Label text="3D Preview" class="preview-label" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>
