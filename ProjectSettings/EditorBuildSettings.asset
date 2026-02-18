@@ -18,7 +18,13 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/FormationEditor.unity
     guid: 8cd9dbae5fbaa40f6ad5c52ec8a67123
   - enabled: 1
+    path: Assets/_Project/Scenes/SongLibrary.unity
+    guid: e7f3754cd326c49acb5be31d79d4c6b3
+  - enabled: 1
     path: Assets/_Project/Scenes/ShowSimulation.unity
     guid: c23ebd11edf324ee983ac2ea465bd95d
+  - enabled: 1
+    path: Assets/_Project/Scenes/MemberProfile.unity
+    guid: 2ead768af6a4240d3a33231689c5da00
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

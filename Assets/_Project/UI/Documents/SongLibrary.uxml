@@ -1,0 +1,143 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../Styles/SongLibrary.uss" />
+
+    <ui:VisualElement class="song-root">
+
+        <!-- Top Bar -->
+        <ui:VisualElement class="top-bar">
+            <ui:VisualElement class="top-bar-left">
+                <ui:Button text="Back" name="btn-back" class="nav-btn" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="top-bar-center">
+                <ui:Label text="SONG LIBRARY" class="screen-title" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="top-bar-right">
+                <ui:Button text="Select Song" name="btn-select" class="nav-btn select" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Main Content -->
+        <ui:VisualElement class="main-content">
+
+            <!-- Left Panel: Song List -->
+            <ui:VisualElement class="song-list-panel">
+                <ui:VisualElement class="panel" style="flex-grow: 1;">
+                    <ui:VisualElement class="panel-header">
+                        <ui:Label text="SONGS" class="panel-title" />
+                        <ui:Label text="0 songs" name="lbl-song-count" class="panel-count" />
+                    </ui:VisualElement>
+
+                    <!-- Category Tabs -->
+                    <ui:VisualElement class="category-tabs">
+                        <ui:Button text="Built-in" name="tab-builtin" class="category-tab active" />
+                        <ui:Button text="Marketplace" name="tab-marketplace" class="category-tab" />
+                    </ui:VisualElement>
+
+                    <!-- Search -->
+                    <ui:VisualElement class="search-bar">
+                        <ui:TextField name="txt-search" class="search-field" />
+                    </ui:VisualElement>
+
+                    <!-- Tag Filters -->
+                    <ui:VisualElement class="tag-filter-bar" name="tag-filter-bar">
+                        <ui:Button text="All" name="tag-all" class="tag-chip active" />
+                        <ui:Button text="March" name="tag-march" class="tag-chip" />
+                        <ui:Button text="Patriotic" name="tag-patriotic" class="tag-chip" />
+                        <ui:Button text="Classic" name="tag-classic" class="tag-chip" />
+                        <ui:Button text="Military" name="tag-military" class="tag-chip" />
+                    </ui:VisualElement>
+
+                    <!-- Song List -->
+                    <ui:ListView name="song-list" class="song-list" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Right Panel: Song Preview -->
+            <ui:VisualElement class="preview-panel">
+                <ui:VisualElement class="panel" style="flex-grow: 1;">
+                    <ui:VisualElement class="panel-header">
+                        <ui:Label text="SONG PREVIEW" class="panel-title" />
+                    </ui:VisualElement>
+
+                    <!-- Empty State -->
+                    <ui:VisualElement name="preview-empty" class="preview-empty">
+                        <ui:Label text="Select a song to preview" class="preview-empty-text" />
+                    </ui:VisualElement>
+
+                    <!-- Song Detail View -->
+                    <ui:VisualElement name="preview-view" style="display: none; flex-grow: 1;">
+
+                        <!-- Song Info -->
+                        <ui:VisualElement class="song-info-section">
+                            <ui:Label text="Song Title" name="lbl-preview-title" class="song-preview-title" />
+                            <ui:Label text="Composer" name="lbl-preview-composer" class="song-preview-composer" />
+                            <ui:Label text="Arranger" name="lbl-preview-arranger" class="song-preview-arranger" />
+
+                            <!-- Difficulty -->
+                            <ui:VisualElement class="difficulty-row">
+                                <ui:Label text="Difficulty" class="difficulty-label" />
+                                <ui:VisualElement class="difficulty-bar-bg">
+                                    <ui:VisualElement name="bar-difficulty" class="difficulty-bar-fill" />
+                                </ui:VisualElement>
+                                <ui:Label text="0/10" name="lbl-difficulty" class="difficulty-value" />
+                            </ui:VisualElement>
+
+                            <!-- Metadata Grid -->
+                            <ui:VisualElement class="song-meta-grid">
+                                <ui:VisualElement class="meta-block">
+                                    <ui:Label text="120" name="lbl-bpm" class="meta-block-value" />
+                                    <ui:Label text="BPM" class="meta-block-label" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="meta-block">
+                                    <ui:Label text="4/4" name="lbl-time-sig" class="meta-block-value" />
+                                    <ui:Label text="Time" class="meta-block-label" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="meta-block">
+                                    <ui:Label text="4:00" name="lbl-duration" class="meta-block-value" />
+                                    <ui:Label text="Duration" class="meta-block-label" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+
+                            <!-- Tags -->
+                            <ui:VisualElement name="tags-container" class="tags-section" />
+
+                            <!-- Description -->
+                            <ui:Label text="" name="lbl-description" class="song-description" />
+                        </ui:VisualElement>
+
+                        <!-- Preview Player -->
+                        <ui:VisualElement class="player-section">
+                            <ui:Label text="PREVIEW" class="player-title" />
+                            <ui:VisualElement class="player-controls">
+                                <ui:Button text="&#9654;" name="btn-play" class="player-btn" />
+                                <ui:VisualElement class="player-progress-bg">
+                                    <ui:VisualElement name="player-progress-fill" class="player-progress-fill" />
+                                </ui:VisualElement>
+                                <ui:Label text="0:00" name="lbl-player-time" class="player-time" />
+                            </ui:VisualElement>
+                            <ui:Label text="" name="lbl-player-status" class="player-status" />
+                        </ui:VisualElement>
+
+                        <!-- Stem Toggles -->
+                        <ui:VisualElement class="stems-section">
+                            <ui:Label text="STEMS" class="stems-title" />
+                            <ui:VisualElement name="stems-container" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+        <!-- Status Bar -->
+        <ui:VisualElement class="status-bar">
+            <ui:Label text="Ready" name="lbl-status" class="status-text" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

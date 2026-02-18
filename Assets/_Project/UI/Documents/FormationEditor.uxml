@@ -9,11 +9,18 @@
 
     <ui:VisualElement class="editor-root">
 
-        <!-- Left Panel: Formation List -->
-        <ui:VisualElement class="formation-panel">
-            <ui:Label text="Formations" class="panel-header" />
-            <ui:ScrollView class="formation-list" name="formation-list" />
-            <ui:Button text="+ Add Formation" name="btn-add-formation" class="formation-add-btn" />
+        <!-- Left Panel: Tabbed (Formations / Members) -->
+        <ui:VisualElement class="left-panel">
+            <ui:VisualElement class="left-panel-tabs">
+                <ui:Button text="Formations" name="tab-formations" class="left-panel-tab active" />
+                <ui:Button text="Members" name="tab-members" class="left-panel-tab" />
+            </ui:VisualElement>
+            <ui:VisualElement name="formations-tab-content" class="tab-content">
+                <ui:ScrollView class="formation-list" name="formation-list" />
+                <ui:Button text="+ Add Empty" name="btn-add-formation" class="formation-add-btn" />
+                <ui:Button text="+ Duplicate Previous" name="btn-duplicate-previous" class="formation-add-btn formation-duplicate-prev-btn" />
+            </ui:VisualElement>
+            <ui:VisualElement name="members-tab-content" class="tab-content" style="display: none;" />
         </ui:VisualElement>
 
         <!-- Center: Field and Toolbar -->
@@ -34,6 +41,9 @@
                 <ui:VisualElement class="toolbar-spacer" />
                 <ui:Label name="lbl-members-placed" class="toolbar-label" text="0 members placed" />
                 <ui:VisualElement class="toolbar-separator" />
+                <ui:Button text="New" name="btn-new-chart" class="toolbar-btn" />
+                <ui:Button text="Templates" name="btn-templates" class="toolbar-btn" />
+                <ui:VisualElement class="toolbar-separator" />
                 <ui:Button text="Save" name="btn-save" class="toolbar-btn" />
                 <ui:Button text="Load" name="btn-load" class="toolbar-btn" />
             </ui:VisualElement>
@@ -42,6 +52,9 @@
             <ui:VisualElement class="field-container" name="field-container">
                 <ui:VisualElement class="field-viewport" name="field-viewport" />
             </ui:VisualElement>
+
+            <!-- Timeline (populated programmatically) -->
+            <ui:VisualElement name="timeline-host" class="timeline-host" />
 
             <!-- Status Bar -->
             <ui:VisualElement class="status-bar">
@@ -100,6 +113,7 @@
                     <ui:Label text="Members" class="property-label" />
                     <ui:Label name="prop-member-count" class="member-count-badge" text="0" />
                 </ui:VisualElement>
+                <ui:Button text="Duplicate Formation" name="btn-duplicate-formation" class="formation-duplicate-btn" />
             </ui:VisualElement>
 
             <!-- No selection message -->

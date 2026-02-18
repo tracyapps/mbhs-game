@@ -1,0 +1,19 @@
+{
+    "Id": "song_semper_fidelis",
+    "Title": "Semper Fidelis",
+    "Composer": "John Philip Sousa",
+    "Arranger": "Standard Band Arrangement",
+    "BPM": 120.0,
+    "BeatsPerMeasure": 4,
+    "BeatUnit": 4,
+    "TotalBeats": 360.0,
+    "DurationSeconds": 180.0,
+    "Difficulty": 7,
+    "TempoChanges": [],
+    "FullMixAddressableKey": "Audio_Song_SemperFidelis_FullMix",
+    "Stems": [
+        { "Family": 0, "AddressableKey": "Audio_Stem_SemperFidelis_Brass" },
+        { "Family": 1, "AddressableKey": "Audio_Stem_SemperFidelis_Woodwind" },
+        { "Family": 2, "AddressableKey": "Audio_Stem_SemperFidelis_BatteryPercussion" }
+    ]
+}

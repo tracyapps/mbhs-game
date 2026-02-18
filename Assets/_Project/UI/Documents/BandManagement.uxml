@@ -1,0 +1,191 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../Styles/BandManagement.uss" />
+
+    <ui:VisualElement class="band-root">
+
+        <!-- Top Bar -->
+        <ui:VisualElement class="top-bar">
+            <ui:VisualElement class="top-bar-left">
+                <ui:Button text="Back" name="btn-back" class="nav-btn" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="top-bar-center">
+                <ui:Label text="School Name" name="lbl-school-name" class="school-name" />
+                <ui:VisualElement class="stat-group">
+                    <ui:Label text="BUDGET" class="stat-label" />
+                    <ui:Label text="$10,000" name="lbl-budget" class="stat-value" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stat-group">
+                    <ui:Label text="REP" class="stat-label" />
+                    <ui:Label text="50" name="lbl-reputation" class="stat-value" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stat-group">
+                    <ui:Label text="MEMBERS" class="stat-label" />
+                    <ui:Label text="0" name="lbl-member-count" class="stat-value" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="top-bar-right">
+                <ui:Button text="Select Song" name="btn-proceed" class="nav-btn proceed" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Main Content -->
+        <ui:VisualElement class="main-content">
+
+            <!-- Left Panel: Roster -->
+            <ui:VisualElement class="roster-panel">
+                <ui:VisualElement class="panel" style="flex-grow: 1;">
+                    <ui:VisualElement class="panel-header">
+                        <ui:Label text="ROSTER" class="panel-title" />
+                        <ui:Label text="0 members" name="lbl-roster-count" class="panel-count" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="filter-tabs" name="filter-tabs">
+                        <ui:Button text="All" name="filter-all" class="filter-tab active" />
+                        <ui:Button text="Brass" name="filter-brass" class="filter-tab" />
+                        <ui:Button text="Woodwind" name="filter-woodwind" class="filter-tab" />
+                        <ui:Button text="Perc" name="filter-percussion" class="filter-tab" />
+                        <ui:Button text="Guard" name="filter-guard" class="filter-tab" />
+                        <ui:Button text="Pit" name="filter-pit" class="filter-tab" />
+                        <ui:Button text="Lead" name="filter-leadership" class="filter-tab" />
+                    </ui:VisualElement>
+
+                    <ui:ListView name="roster-list" class="roster-list" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Center Panel: Member Detail -->
+            <ui:VisualElement class="detail-panel">
+                <ui:VisualElement class="panel" style="flex-grow: 1;">
+                    <ui:VisualElement class="panel-header">
+                        <ui:Label text="MEMBER DETAILS" class="panel-title" />
+                    </ui:VisualElement>
+
+                    <!-- Empty State -->
+                    <ui:VisualElement name="detail-empty" class="detail-empty">
+                        <ui:Label text="Select a member to view details" class="detail-empty-text" />
+                    </ui:VisualElement>
+
+                    <!-- Detail View -->
+                    <ui:VisualElement name="detail-view" class="detail-content" style="display: none;">
+                        <ui:Label text="Member Name" name="lbl-detail-name" class="detail-name" />
+
+                        <ui:VisualElement class="detail-info">
+                            <ui:Label text="Sophomore" name="lbl-detail-year" class="detail-info-item" />
+                            <ui:Label text="Active" name="lbl-detail-status" class="detail-info-item" />
+                            <ui:Label text="Trumpet" name="lbl-detail-instrument" class="detail-instrument-label" />
+                        </ui:VisualElement>
+
+                        <!-- Skills -->
+                        <ui:VisualElement class="skills-section">
+                            <ui:VisualElement class="skill-row">
+                                <ui:Label text="Musicianship" class="skill-label" />
+                                <ui:VisualElement class="skill-bar-bg">
+                                    <ui:VisualElement name="bar-musicianship" class="skill-bar-fill musicianship" />
+                                </ui:VisualElement>
+                                <ui:Label text="0" name="val-musicianship" class="skill-value" />
+                            </ui:VisualElement>
+
+                            <ui:VisualElement class="skill-row">
+                                <ui:Label text="Marching" class="skill-label" />
+                                <ui:VisualElement class="skill-bar-bg">
+                                    <ui:VisualElement name="bar-marching" class="skill-bar-fill marching" />
+                                </ui:VisualElement>
+                                <ui:Label text="0" name="val-marching" class="skill-value" />
+                            </ui:VisualElement>
+
+                            <ui:VisualElement class="skill-row">
+                                <ui:Label text="Stamina" class="skill-label" />
+                                <ui:VisualElement class="skill-bar-bg">
+                                    <ui:VisualElement name="bar-stamina" class="skill-bar-fill stamina" />
+                                </ui:VisualElement>
+                                <ui:Label text="0" name="val-stamina" class="skill-value" />
+                            </ui:VisualElement>
+
+                            <ui:VisualElement class="skill-row">
+                                <ui:Label text="Showmanship" class="skill-label" />
+                                <ui:VisualElement class="skill-bar-bg">
+                                    <ui:VisualElement name="bar-showmanship" class="skill-bar-fill showmanship" />
+                                </ui:VisualElement>
+                                <ui:Label text="0" name="val-showmanship" class="skill-value" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+
+                        <!-- Stats -->
+                        <ui:VisualElement class="stats-row">
+                            <ui:VisualElement class="stat-block">
+                                <ui:Label text="75" name="lbl-overall-rating" class="stat-block-value" />
+                                <ui:Label text="Overall" class="stat-block-label" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="stat-block">
+                                <ui:Label text="85" name="lbl-morale" class="stat-block-value" />
+                                <ui:Label text="Morale" class="stat-block-label" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="stat-block">
+                                <ui:Label text="0" name="lbl-experience" class="stat-block-value" />
+                                <ui:Label text="XP" class="stat-block-label" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+
+                        <!-- Training Section -->
+                        <ui:VisualElement class="training-section">
+                            <ui:Label text="TRAIN" class="training-title" />
+                            <ui:VisualElement class="training-row">
+                                <ui:Button text="Musicianship" name="btn-train-musicianship" class="train-skill-btn" />
+                                <ui:Button text="Marching" name="btn-train-marching" class="train-skill-btn" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="training-row">
+                                <ui:Button text="Stamina" name="btn-train-stamina" class="train-skill-btn" />
+                                <ui:Button text="Showmanship" name="btn-train-showmanship" class="train-skill-btn" />
+                            </ui:VisualElement>
+                            <ui:Label text="Cost: $150 per session" name="lbl-training-cost" class="training-cost" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- Detail Actions -->
+                    <ui:VisualElement name="detail-actions" class="detail-actions" style="display: none;">
+                        <ui:DropdownField name="dd-instrument" class="instrument-dropdown" />
+                        <ui:Button text="Assign" name="btn-assign" class="action-btn" />
+                        <ui:VisualElement style="flex-grow: 1;" />
+                        <ui:Button text="Dismiss" name="btn-dismiss" class="action-btn dismiss" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Right Panel: Recruiting + Composition -->
+            <ui:VisualElement class="side-panel">
+                <!-- Recruiting -->
+                <ui:VisualElement class="panel side-panel-top">
+                    <ui:VisualElement class="panel-header">
+                        <ui:Label text="RECRUITING" class="panel-title" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="recruit-actions">
+                        <ui:Button text="Scout New Recruits" name="btn-scout" class="scout-btn" />
+                    </ui:VisualElement>
+
+                    <ui:ListView name="recruit-list" class="recruit-list" />
+                </ui:VisualElement>
+
+                <!-- Composition -->
+                <ui:VisualElement class="panel side-panel-bottom">
+                    <ui:VisualElement class="panel-header">
+                        <ui:Label text="COMPOSITION" class="panel-title" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement name="composition-content" class="composition-content" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Status Bar -->
+        <ui:VisualElement class="status-bar">
+            <ui:Label text="Ready" name="lbl-status" class="status-text" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

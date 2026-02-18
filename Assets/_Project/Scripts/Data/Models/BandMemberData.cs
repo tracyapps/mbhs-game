@@ -10,6 +10,7 @@ namespace MBHS.Data.Models
         public string Id;
         public string FirstName;
         public string LastName;
+        public string Nickname;
         public InstrumentType AssignedInstrument;
         public int YearInSchool; // 1-4 (Freshman to Senior)
         public MemberStatus Status;
@@ -23,7 +24,8 @@ namespace MBHS.Data.Models
         public int Experience;
         public int Morale; // 0-100
 
-        public string DisplayName => $"{FirstName} {LastName}";
+        public string DisplayName =>
+            !string.IsNullOrEmpty(Nickname) ? Nickname : $"{FirstName} {LastName}";
 
         public float GetSkill(SkillType skill)
         {

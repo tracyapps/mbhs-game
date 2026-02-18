@@ -1,0 +1,715 @@
+/* ==========================================================================
+   Band Management Styles
+   ========================================================================== */
+
+/* --- Root Layout --- */
+
+.band-root {
+    flex-grow: 1;
+    background-color: rgb(20, 22, 30);
+    flex-direction: column;
+}
+
+/* --- Top Bar --- */
+
+.top-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: rgb(28, 30, 42);
+    border-bottom-width: 2px;
+    border-bottom-color: rgb(50, 55, 75);
+    min-height: 56px;
+}
+
+.top-bar-left {
+    flex-direction: row;
+    align-items: center;
+}
+
+.top-bar-center {
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.top-bar-right {
+    flex-direction: row;
+    align-items: center;
+}
+
+.school-name {
+    font-size: 20px;
+    color: rgb(220, 200, 120);
+    -unity-font-style: bold;
+    margin-right: 30px;
+}
+
+.stat-group {
+    flex-direction: row;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: rgb(130, 130, 155);
+    margin-right: 6px;
+    -unity-text-align: middle-right;
+}
+
+.stat-value {
+    font-size: 16px;
+    color: rgb(220, 220, 230);
+    -unity-font-style: bold;
+    min-width: 60px;
+}
+
+/* --- Nav Buttons --- */
+
+.nav-btn {
+    height: 36px;
+    padding: 0 16px;
+    background-color: rgb(45, 50, 70);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(70, 80, 110);
+    color: rgb(200, 200, 215);
+    font-size: 13px;
+    -unity-font-style: bold;
+    transition-duration: 0.12s;
+}
+
+.nav-btn:hover {
+    background-color: rgb(60, 70, 100);
+    border-color: rgb(100, 120, 180);
+}
+
+.nav-btn:active {
+    background-color: rgb(35, 40, 60);
+}
+
+.nav-btn.proceed {
+    background-color: rgb(50, 90, 60);
+    border-color: rgb(80, 140, 90);
+}
+
+.nav-btn.proceed:hover {
+    background-color: rgb(60, 110, 70);
+    border-color: rgb(100, 170, 110);
+}
+
+/* --- Main Content --- */
+
+.main-content {
+    flex-grow: 1;
+    flex-direction: row;
+    padding: 10px;
+}
+
+/* --- Left Panel: Roster --- */
+
+.roster-panel {
+    width: 320px;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.panel {
+    background-color: rgb(28, 30, 42);
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: rgb(50, 55, 75);
+}
+
+.panel-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(50, 55, 75);
+}
+
+.panel-title {
+    font-size: 14px;
+    color: rgb(180, 180, 200);
+    -unity-font-style: bold;
+    letter-spacing: 1px;
+}
+
+.panel-count {
+    font-size: 12px;
+    color: rgb(130, 130, 155);
+}
+
+/* --- Filter Tabs --- */
+
+.filter-tabs {
+    flex-direction: row;
+    padding: 6px 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(40, 42, 56);
+    flex-wrap: wrap;
+}
+
+.filter-tab {
+    height: 26px;
+    padding: 0 8px;
+    margin: 2px;
+    background-color: rgb(38, 40, 54);
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: rgb(50, 55, 70);
+    color: rgb(150, 150, 170);
+    font-size: 11px;
+    transition-duration: 0.1s;
+}
+
+.filter-tab:hover {
+    background-color: rgb(50, 55, 75);
+    color: rgb(200, 200, 215);
+}
+
+.filter-tab.active {
+    background-color: rgb(55, 65, 95);
+    border-color: rgb(90, 110, 160);
+    color: rgb(220, 220, 240);
+}
+
+/* --- Member List --- */
+
+.roster-list {
+    flex-grow: 1;
+}
+
+.member-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 10px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(35, 37, 50);
+    transition-duration: 0.1s;
+}
+
+.member-row:hover {
+    background-color: rgb(35, 38, 52);
+}
+
+.member-row.selected {
+    background-color: rgb(45, 55, 85);
+    border-left-width: 3px;
+    border-left-color: rgb(120, 140, 200);
+}
+
+.member-name {
+    flex-grow: 1;
+    font-size: 13px;
+    color: rgb(210, 210, 225);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.member-instrument {
+    font-size: 11px;
+    color: rgb(140, 140, 165);
+    width: 75px;
+    -unity-text-align: middle-right;
+    margin-right: 8px;
+}
+
+.member-rating {
+    font-size: 12px;
+    -unity-font-style: bold;
+    width: 32px;
+    -unity-text-align: middle-right;
+}
+
+.rating-high {
+    color: rgb(80, 200, 120);
+}
+
+.rating-mid {
+    color: rgb(220, 200, 80);
+}
+
+.rating-low {
+    color: rgb(200, 100, 80);
+}
+
+.member-year {
+    font-size: 10px;
+    color: rgb(120, 120, 145);
+    width: 22px;
+    -unity-text-align: middle-center;
+    margin-right: 6px;
+}
+
+/* --- Center Panel: Member Detail --- */
+
+.detail-panel {
+    flex-grow: 1;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.detail-content {
+    flex-grow: 1;
+    padding: 16px;
+}
+
+.detail-empty {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-empty-text {
+    font-size: 14px;
+    color: rgb(100, 100, 125);
+    -unity-font-style: italic;
+}
+
+.detail-name {
+    font-size: 24px;
+    color: rgb(230, 230, 240);
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+}
+
+.detail-info {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.detail-info-item {
+    font-size: 13px;
+    color: rgb(160, 160, 180);
+    margin-right: 20px;
+}
+
+.detail-instrument-label {
+    font-size: 13px;
+    color: rgb(160, 160, 180);
+    padding: 3px 10px;
+    background-color: rgb(40, 45, 65);
+    border-radius: 3px;
+}
+
+/* --- Skill Bars --- */
+
+.skills-section {
+    margin-top: 12px;
+}
+
+.skill-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.skill-label {
+    font-size: 12px;
+    color: rgb(160, 160, 180);
+    width: 100px;
+}
+
+.skill-bar-bg {
+    flex-grow: 1;
+    height: 14px;
+    background-color: rgb(35, 38, 52);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition-duration: 0.3s;
+}
+
+.skill-bar-fill.musicianship {
+    background-color: rgb(80, 140, 220);
+}
+
+.skill-bar-fill.marching {
+    background-color: rgb(80, 190, 120);
+}
+
+.skill-bar-fill.stamina {
+    background-color: rgb(220, 160, 50);
+}
+
+.skill-bar-fill.showmanship {
+    background-color: rgb(190, 80, 200);
+}
+
+.skill-value {
+    font-size: 12px;
+    color: rgb(190, 190, 210);
+    width: 36px;
+    -unity-text-align: middle-right;
+    -unity-font-style: bold;
+}
+
+/* --- Morale / Overall --- */
+
+.stats-row {
+    flex-direction: row;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top-width: 1px;
+    border-top-color: rgb(45, 48, 65);
+}
+
+.stat-block {
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.stat-block-value {
+    font-size: 28px;
+    -unity-font-style: bold;
+    color: rgb(220, 220, 235);
+}
+
+.stat-block-label {
+    font-size: 11px;
+    color: rgb(130, 130, 155);
+    margin-top: 2px;
+}
+
+/* --- Detail Actions --- */
+
+.detail-actions {
+    flex-direction: row;
+    padding: 12px 16px;
+    border-top-width: 1px;
+    border-top-color: rgb(50, 55, 75);
+}
+
+.action-btn {
+    height: 34px;
+    padding: 0 16px;
+    margin-right: 8px;
+    background-color: rgb(45, 50, 70);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(70, 80, 110);
+    color: rgb(200, 200, 215);
+    font-size: 13px;
+    -unity-font-style: bold;
+    transition-duration: 0.12s;
+}
+
+.action-btn:hover {
+    background-color: rgb(60, 70, 100);
+    border-color: rgb(100, 120, 180);
+}
+
+.action-btn.train {
+    background-color: rgb(50, 75, 100);
+    border-color: rgb(70, 110, 150);
+}
+
+.action-btn.train:hover {
+    background-color: rgb(60, 90, 120);
+}
+
+.action-btn.dismiss {
+    background-color: rgb(90, 40, 40);
+    border-color: rgb(130, 60, 60);
+}
+
+.action-btn.dismiss:hover {
+    background-color: rgb(110, 50, 50);
+}
+
+.instrument-dropdown {
+    width: 180px;
+    height: 30px;
+    margin-right: 8px;
+    background-color: rgb(38, 42, 58);
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: rgb(60, 65, 85);
+    color: rgb(200, 200, 215);
+    font-size: 12px;
+}
+
+/* --- Right Panel: Recruit / Composition --- */
+
+.side-panel {
+    width: 300px;
+    flex-direction: column;
+}
+
+.side-panel-top {
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+.side-panel-bottom {
+    min-height: 180px;
+}
+
+/* --- Recruit List --- */
+
+.recruit-actions {
+    flex-direction: row;
+    padding: 8px 10px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(40, 42, 56);
+}
+
+.scout-btn {
+    flex-grow: 1;
+    height: 30px;
+    background-color: rgb(50, 75, 55);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(75, 110, 80);
+    color: rgb(200, 220, 200);
+    font-size: 12px;
+    -unity-font-style: bold;
+    transition-duration: 0.12s;
+}
+
+.scout-btn:hover {
+    background-color: rgb(60, 90, 65);
+    border-color: rgb(90, 135, 95);
+}
+
+.recruit-list {
+    flex-grow: 1;
+}
+
+.recruit-row {
+    flex-direction: column;
+    padding: 8px 10px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(35, 37, 50);
+    transition-duration: 0.1s;
+}
+
+.recruit-row:hover {
+    background-color: rgb(35, 38, 52);
+}
+
+.recruit-top-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 3px;
+}
+
+.recruit-name {
+    flex-grow: 1;
+    font-size: 13px;
+    color: rgb(210, 210, 225);
+}
+
+.recruit-cost {
+    font-size: 12px;
+    color: rgb(220, 200, 80);
+    -unity-font-style: bold;
+}
+
+.recruit-bottom-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.recruit-info {
+    font-size: 11px;
+    color: rgb(130, 130, 155);
+}
+
+.recruit-btn {
+    height: 24px;
+    padding: 0 12px;
+    background-color: rgb(50, 85, 55);
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: rgb(75, 120, 80);
+    color: rgb(200, 220, 200);
+    font-size: 11px;
+    -unity-font-style: bold;
+    transition-duration: 0.1s;
+}
+
+.recruit-btn:hover {
+    background-color: rgb(60, 100, 65);
+}
+
+.recruit-btn:disabled {
+    opacity: 0.4;
+}
+
+/* --- Composition Panel --- */
+
+.composition-content {
+    padding: 10px 14px;
+}
+
+.section-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.section-label {
+    font-size: 11px;
+    color: rgb(160, 160, 180);
+    width: 110px;
+}
+
+.section-bar-bg {
+    flex-grow: 1;
+    height: 10px;
+    background-color: rgb(35, 38, 52);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 8px;
+}
+
+.section-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+}
+
+.section-bar-fill.brass {
+    background-color: rgb(219, 181, 41);
+}
+
+.section-bar-fill.woodwind {
+    background-color: rgb(61, 161, 61);
+}
+
+.section-bar-fill.percussion {
+    background-color: rgb(199, 61, 61);
+}
+
+.section-bar-fill.front-ensemble {
+    background-color: rgb(199, 99, 41);
+}
+
+.section-bar-fill.color-guard {
+    background-color: rgb(161, 61, 199);
+}
+
+.section-bar-fill.leadership {
+    background-color: rgb(200, 200, 210);
+}
+
+.section-count {
+    font-size: 11px;
+    color: rgb(170, 170, 190);
+    width: 20px;
+    -unity-text-align: middle-right;
+    -unity-font-style: bold;
+}
+
+.balance-row {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top-width: 1px;
+    border-top-color: rgb(45, 48, 65);
+}
+
+.balance-label {
+    font-size: 12px;
+    color: rgb(160, 160, 180);
+    margin-right: 10px;
+}
+
+.balance-value {
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+.warnings-container {
+    margin-top: 6px;
+}
+
+.warning-text {
+    font-size: 11px;
+    color: rgb(220, 160, 60);
+    margin-top: 3px;
+}
+
+/* --- Training Section --- */
+
+.training-section {
+    padding: 12px 16px;
+    margin-top: 12px;
+    border-top-width: 1px;
+    border-top-color: rgb(45, 48, 65);
+}
+
+.training-title {
+    font-size: 13px;
+    color: rgb(180, 180, 200);
+    -unity-font-style: bold;
+    margin-bottom: 10px;
+}
+
+.training-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.train-skill-btn {
+    flex-grow: 1;
+    height: 28px;
+    margin: 2px;
+    background-color: rgb(40, 55, 75);
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: rgb(60, 80, 110);
+    color: rgb(190, 200, 220);
+    font-size: 11px;
+    transition-duration: 0.1s;
+}
+
+.train-skill-btn:hover {
+    background-color: rgb(50, 70, 95);
+    border-color: rgb(80, 110, 150);
+}
+
+.train-skill-btn:disabled {
+    opacity: 0.4;
+}
+
+.training-cost {
+    font-size: 11px;
+    color: rgb(220, 200, 80);
+    margin-top: 4px;
+    -unity-text-align: middle-center;
+}
+
+/* --- Status Bar --- */
+
+.status-bar {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 20px;
+    background-color: rgb(24, 26, 36);
+    border-top-width: 1px;
+    border-top-color: rgb(45, 48, 65);
+    min-height: 28px;
+}
+
+.status-text {
+    font-size: 11px;
+    color: rgb(130, 130, 155);
+    flex-grow: 1;
+}

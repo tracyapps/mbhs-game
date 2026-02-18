@@ -1,0 +1,84 @@
+{
+    "Entries": [
+        {
+            "Id": "sfx_crowd_cheer",
+            "Title": "Crowd Cheering",
+            "Category": "crowd",
+            "DurationSeconds": 8.0,
+            "AddressableKey": "sfx/crowd_cheer",
+            "IsLoopable": false
+        },
+        {
+            "Id": "sfx_crowd_boo",
+            "Title": "Crowd Booing",
+            "Category": "crowd",
+            "DurationSeconds": 5.0,
+            "AddressableKey": "sfx/crowd_boo",
+            "IsLoopable": false
+        },
+        {
+            "Id": "sfx_crowd_murmur",
+            "Title": "Crowd Murmur",
+            "Category": "crowd",
+            "DurationSeconds": 15.0,
+            "AddressableKey": "sfx/crowd_murmur",
+            "IsLoopable": true
+        },
+        {
+            "Id": "sfx_announcer_intro",
+            "Title": "Announcer - Introduction",
+            "Category": "announcer",
+            "DurationSeconds": 6.0,
+            "AddressableKey": "sfx/announcer_intro",
+            "IsLoopable": false
+        },
+        {
+            "Id": "sfx_announcer_scoring",
+            "Title": "Announcer - Scoring",
+            "Category": "announcer",
+            "DurationSeconds": 4.0,
+            "AddressableKey": "sfx/announcer_scoring",
+            "IsLoopable": false
+        },
+        {
+            "Id": "sfx_drum_cadence",
+            "Title": "Drum Cadence",
+            "Category": "effect",
+            "DurationSeconds": 12.0,
+            "AddressableKey": "sfx/drum_cadence",
+            "IsLoopable": true
+        },
+        {
+            "Id": "sfx_whistle",
+            "Title": "Whistle Blast",
+            "Category": "effect",
+            "DurationSeconds": 1.5,
+            "AddressableKey": "sfx/whistle",
+            "IsLoopable": false
+        },
+        {
+            "Id": "sfx_horn_blast",
+            "Title": "Horn Blast",
+            "Category": "effect",
+            "DurationSeconds": 2.0,
+            "AddressableKey": "sfx/horn_blast",
+            "IsLoopable": false
+        },
+        {
+            "Id": "sfx_ambient_stadium",
+            "Title": "Stadium Ambience",
+            "Category": "ambient",
+            "DurationSeconds": 30.0,
+            "AddressableKey": "sfx/ambient_stadium",
+            "IsLoopable": true
+        },
+        {
+            "Id": "sfx_ambient_wind",
+            "Title": "Wind Ambience",
+            "Category": "ambient",
+            "DurationSeconds": 20.0,
+            "AddressableKey": "sfx/ambient_wind",
+            "IsLoopable": true
+        }
+    ]
+}

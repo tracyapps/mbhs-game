@@ -24,6 +24,11 @@ namespace MBHS.Systems.SaveLoad
         // Player progress
         Task SavePlayerProgress(PlayerProgress progress);
         Task<PlayerProgress> LoadPlayerProgress();
+
+        // Formation templates (user-created)
+        Task SaveFormationTemplate(FormationTemplate template);
+        Task<List<FormationTemplate>> ListUserTemplates();
+        Task DeleteFormationTemplate(string templateId);
     }
 
     public class DrillChartSummary

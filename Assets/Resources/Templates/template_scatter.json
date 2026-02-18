@@ -1,0 +1,33 @@
+{
+    "Id": "template_scatter",
+    "Name": "Concert Scatter",
+    "Description": "Artistic scattered positions across the field. Loosely grouped by section.",
+    "AuthorId": "builtin",
+    "SlotCount": 24,
+    "Slots": [
+        { "SlotIndex": 0, "FieldX": 42.0, "FieldY": 18.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 1, "FieldX": 46.5, "FieldY": 20.5, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 2, "FieldX": 44.0, "FieldY": 23.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 3, "FieldX": 48.0, "FieldY": 17.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 4, "FieldX": 40.0, "FieldY": 21.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 5, "FieldX": 56.0, "FieldY": 19.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 6, "FieldX": 58.5, "FieldY": 22.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 7, "FieldX": 54.0, "FieldY": 21.5, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 8, "FieldX": 60.0, "FieldY": 18.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 9, "FieldX": 52.0, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 10, "FieldX": 43.0, "FieldY": 30.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 11, "FieldX": 46.0, "FieldY": 33.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 12, "FieldX": 41.0, "FieldY": 35.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 13, "FieldX": 48.0, "FieldY": 31.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 14, "FieldX": 55.0, "FieldY": 30.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 15, "FieldX": 58.0, "FieldY": 33.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 16, "FieldX": 53.0, "FieldY": 35.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 17, "FieldX": 60.0, "FieldY": 31.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 18, "FieldX": 47.0, "FieldY": 26.0, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 19, "FieldX": 53.0, "FieldY": 27.0, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 20, "FieldX": 44.0, "FieldY": 27.5, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 21, "FieldX": 56.0, "FieldY": 26.5, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 22, "FieldX": 50.0, "FieldY": 26.67, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 23, "FieldX": 50.0, "FieldY": 14.0, "FacingAngle": 180, "PreferredFamily": 5 }
+    ]
+}

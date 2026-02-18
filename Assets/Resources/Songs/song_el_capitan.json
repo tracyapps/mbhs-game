@@ -1,0 +1,19 @@
+{
+    "Id": "song_el_capitan",
+    "Title": "El Capitan March",
+    "Composer": "John Philip Sousa",
+    "Arranger": "Standard Band Arrangement",
+    "BPM": 126.0,
+    "BeatsPerMeasure": 4,
+    "BeatUnit": 4,
+    "TotalBeats": 378.0,
+    "DurationSeconds": 180.0,
+    "Difficulty": 4,
+    "TempoChanges": [],
+    "FullMixAddressableKey": "Audio_Song_ElCapitan_FullMix",
+    "Stems": [
+        { "Family": 0, "AddressableKey": "Audio_Stem_ElCapitan_Brass" },
+        { "Family": 1, "AddressableKey": "Audio_Stem_ElCapitan_Woodwind" },
+        { "Family": 2, "AddressableKey": "Audio_Stem_ElCapitan_BatteryPercussion" }
+    ]
+}

@@ -15,6 +15,7 @@
                 <ui:Button text="New Show" name="btn-new-game" class="menu-btn primary" />
                 <ui:Button text="Continue" name="btn-continue" class="menu-btn" />
                 <ui:Button text="Formation Editor" name="btn-formation-editor" class="menu-btn" />
+                <ui:Button text="Song Library" name="btn-song-library" class="menu-btn" />
                 <ui:Button text="Settings" name="btn-settings" class="menu-btn" />
                 <ui:Button text="Quit" name="btn-quit" class="menu-btn" />
             </ui:VisualElement>

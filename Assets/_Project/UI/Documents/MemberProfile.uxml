@@ -1,0 +1,129 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../Styles/MemberProfile.uss" />
+
+    <ui:VisualElement class="profile-root">
+
+        <!-- Top Bar -->
+        <ui:VisualElement class="profile-top-bar">
+            <ui:Button text="Back" name="btn-back" class="profile-back-btn" />
+            <ui:Label text="Member Profile" class="profile-top-title" />
+            <ui:VisualElement class="profile-top-spacer" />
+        </ui:VisualElement>
+
+        <!-- Content -->
+        <ui:VisualElement class="profile-content">
+
+            <!-- Left Column: Identity + Instrument -->
+            <ui:VisualElement class="profile-left-column">
+
+                <!-- Avatar Section -->
+                <ui:VisualElement class="profile-avatar-section">
+                    <ui:VisualElement name="profile-avatar" class="profile-avatar" />
+                    <ui:Label name="profile-full-name" class="profile-full-name" text="First Last" />
+                    <ui:VisualElement class="profile-nickname-row">
+                        <ui:Label text="Nickname:" class="profile-field-label" />
+                        <ui:TextField name="profile-nickname" class="profile-nickname-field" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="profile-detail-row">
+                        <ui:Label text="Year:" class="profile-field-label" />
+                        <ui:Label name="profile-year" class="profile-field-value" text="Freshman" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="profile-detail-row">
+                        <ui:Label text="Status:" class="profile-field-label" />
+                        <ui:Label name="profile-status" class="profile-field-value" text="Active" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- Instrument Section -->
+                <ui:VisualElement class="profile-instrument-section">
+                    <ui:Label text="INSTRUMENT" class="profile-section-title" />
+                    <ui:VisualElement class="profile-detail-row">
+                        <ui:Label text="Current:" class="profile-field-label" />
+                        <ui:Label name="profile-instrument-label" class="profile-field-value" text="--" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="profile-detail-row">
+                        <ui:Label text="Reassign:" class="profile-field-label" />
+                        <ui:DropdownField name="profile-instrument-dropdown" class="profile-dropdown" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+
+            <!-- Right Column: Skills + Stats -->
+            <ui:VisualElement class="profile-right-column">
+
+                <!-- Skills Section -->
+                <ui:VisualElement class="profile-skills-section">
+                    <ui:Label text="SKILLS" class="profile-section-title" />
+
+                    <ui:VisualElement class="profile-skill-row">
+                        <ui:Label text="Musicianship" class="profile-skill-label" />
+                        <ui:VisualElement class="profile-skill-bar-bg">
+                            <ui:VisualElement name="bar-musicianship" class="profile-skill-bar-fill skill-musicianship" />
+                        </ui:VisualElement>
+                        <ui:Label name="val-musicianship" class="profile-skill-value" text="0" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="profile-skill-row">
+                        <ui:Label text="Marching" class="profile-skill-label" />
+                        <ui:VisualElement class="profile-skill-bar-bg">
+                            <ui:VisualElement name="bar-marching" class="profile-skill-bar-fill skill-marching" />
+                        </ui:VisualElement>
+                        <ui:Label name="val-marching" class="profile-skill-value" text="0" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="profile-skill-row">
+                        <ui:Label text="Stamina" class="profile-skill-label" />
+                        <ui:VisualElement class="profile-skill-bar-bg">
+                            <ui:VisualElement name="bar-stamina" class="profile-skill-bar-fill skill-stamina" />
+                        </ui:VisualElement>
+                        <ui:Label name="val-stamina" class="profile-skill-value" text="0" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="profile-skill-row">
+                        <ui:Label text="Showmanship" class="profile-skill-label" />
+                        <ui:VisualElement class="profile-skill-bar-bg">
+                            <ui:VisualElement name="bar-showmanship" class="profile-skill-bar-fill skill-showmanship" />
+                        </ui:VisualElement>
+                        <ui:Label name="val-showmanship" class="profile-skill-value" text="0" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- Stats Row -->
+                <ui:VisualElement class="profile-stats-section">
+                    <ui:Label text="STATS" class="profile-section-title" />
+                    <ui:VisualElement class="profile-stats-row">
+                        <ui:VisualElement class="profile-stat-card">
+                            <ui:Label name="stat-overall" class="profile-stat-value" text="0" />
+                            <ui:Label text="Overall" class="profile-stat-label" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="profile-stat-card">
+                            <ui:Label name="stat-morale" class="profile-stat-value" text="0" />
+                            <ui:Label text="Morale" class="profile-stat-label" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="profile-stat-card">
+                            <ui:Label name="stat-xp" class="profile-stat-value" text="0" />
+                            <ui:Label text="XP" class="profile-stat-label" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- Bio Placeholder -->
+                <ui:VisualElement class="profile-bio-section">
+                    <ui:Label text="BIOGRAPHY" class="profile-section-title" />
+                    <ui:Label name="profile-bio" class="profile-bio-text"
+                              text="Biography and backstory will appear here in a future update." />
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

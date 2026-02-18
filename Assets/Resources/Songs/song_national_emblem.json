@@ -1,0 +1,19 @@
+{
+    "Id": "song_national_emblem",
+    "Title": "National Emblem March",
+    "Composer": "E.E. Bagley",
+    "Arranger": "Standard Band Arrangement",
+    "BPM": 116.0,
+    "BeatsPerMeasure": 4,
+    "BeatUnit": 4,
+    "TotalBeats": 348.0,
+    "DurationSeconds": 180.0,
+    "Difficulty": 5,
+    "TempoChanges": [],
+    "FullMixAddressableKey": "Audio_Song_NationalEmblem_FullMix",
+    "Stems": [
+        { "Family": 0, "AddressableKey": "Audio_Stem_NationalEmblem_Brass" },
+        { "Family": 1, "AddressableKey": "Audio_Stem_NationalEmblem_Woodwind" },
+        { "Family": 2, "AddressableKey": "Audio_Stem_NationalEmblem_BatteryPercussion" }
+    ]
+}

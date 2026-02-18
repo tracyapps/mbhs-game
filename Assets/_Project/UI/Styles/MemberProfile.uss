@@ -1,0 +1,288 @@
+/* ==========================================================================
+   Member Profile Screen Styles
+   ========================================================================== */
+
+/* --- Root --- */
+.profile-root {
+    flex-grow: 1;
+    background-color: rgb(35, 35, 38);
+    flex-direction: column;
+}
+
+/* --- Top Bar --- */
+.profile-top-bar {
+    height: 48px;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(45, 45, 48);
+    border-bottom-width: 2px;
+    border-bottom-color: rgb(25, 25, 28);
+    padding: 0 16px;
+}
+
+.profile-back-btn {
+    height: 32px;
+    padding: 0 16px;
+    background-color: rgb(60, 60, 65);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(80, 80, 85);
+    color: rgb(200, 200, 200);
+    font-size: 12px;
+    -unity-font-style: bold;
+    margin-right: 16px;
+}
+
+.profile-back-btn:hover {
+    background-color: rgb(75, 75, 80);
+    border-color: rgb(100, 140, 200);
+}
+
+.profile-top-title {
+    font-size: 16px;
+    color: rgb(220, 220, 225);
+    -unity-font-style: bold;
+}
+
+.profile-top-spacer {
+    flex-grow: 1;
+}
+
+/* --- Content Layout --- */
+.profile-content {
+    flex-grow: 1;
+    flex-direction: row;
+    padding: 20px;
+}
+
+/* --- Left Column --- */
+.profile-left-column {
+    width: 360px;
+    min-width: 300px;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+/* --- Avatar Section --- */
+.profile-avatar-section {
+    background-color: rgb(45, 45, 48);
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgb(60, 60, 65);
+    padding: 20px;
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin-bottom: 12px;
+    background-color: rgb(60, 60, 65);
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar-initial {
+    font-size: 32px;
+    color: white;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.profile-full-name {
+    font-size: 20px;
+    color: rgb(235, 235, 240);
+    -unity-font-style: bold;
+    margin-bottom: 12px;
+    -unity-text-align: middle-center;
+}
+
+.profile-nickname-row {
+    flex-direction: row;
+    align-items: center;
+    margin: 4px 0;
+    width: 100%;
+}
+
+.profile-detail-row {
+    flex-direction: row;
+    align-items: center;
+    margin: 4px 0;
+    width: 100%;
+}
+
+.profile-field-label {
+    width: 80px;
+    font-size: 12px;
+    color: rgb(140, 140, 145);
+}
+
+.profile-field-value {
+    flex-grow: 1;
+    font-size: 12px;
+    color: rgb(210, 210, 215);
+}
+
+.profile-nickname-field {
+    flex-grow: 1;
+    height: 24px;
+    background-color: rgb(35, 35, 38);
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: rgb(70, 70, 75);
+    color: rgb(220, 220, 225);
+    font-size: 12px;
+    padding: 0 6px;
+}
+
+/* --- Instrument Section --- */
+.profile-instrument-section {
+    background-color: rgb(45, 45, 48);
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgb(60, 60, 65);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.profile-section-title {
+    font-size: 11px;
+    color: rgb(120, 120, 130);
+    -unity-font-style: bold;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.profile-dropdown {
+    flex-grow: 1;
+    height: 24px;
+    background-color: rgb(35, 35, 38);
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: rgb(70, 70, 75);
+    color: rgb(220, 220, 225);
+    font-size: 11px;
+}
+
+/* --- Right Column --- */
+.profile-right-column {
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+/* --- Skills Section --- */
+.profile-skills-section {
+    background-color: rgb(45, 45, 48);
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgb(60, 60, 65);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.profile-skill-row {
+    flex-direction: row;
+    align-items: center;
+    margin: 6px 0;
+    height: 22px;
+}
+
+.profile-skill-label {
+    width: 100px;
+    font-size: 12px;
+    color: rgb(180, 180, 185);
+}
+
+.profile-skill-bar-bg {
+    flex-grow: 1;
+    height: 14px;
+    background-color: rgb(30, 30, 33);
+    border-radius: 7px;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.profile-skill-bar-fill {
+    height: 100%;
+    border-radius: 7px;
+    min-width: 0;
+}
+
+.skill-musicianship {
+    background-color: rgb(70, 140, 220);
+}
+
+.skill-marching {
+    background-color: rgb(80, 180, 80);
+}
+
+.skill-stamina {
+    background-color: rgb(220, 160, 40);
+}
+
+.skill-showmanship {
+    background-color: rgb(180, 70, 180);
+}
+
+.profile-skill-value {
+    width: 30px;
+    font-size: 11px;
+    color: rgb(160, 160, 165);
+    -unity-text-align: middle-right;
+}
+
+/* --- Stats Section --- */
+.profile-stats-section {
+    background-color: rgb(45, 45, 48);
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgb(60, 60, 65);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.profile-stats-row {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.profile-stat-card {
+    width: 100px;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(38, 38, 42);
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: rgb(55, 55, 60);
+}
+
+.profile-stat-value {
+    font-size: 24px;
+    color: rgb(220, 220, 230);
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+}
+
+.profile-stat-label {
+    font-size: 10px;
+    color: rgb(120, 120, 130);
+}
+
+/* --- Bio Section --- */
+.profile-bio-section {
+    background-color: rgb(45, 45, 48);
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgb(60, 60, 65);
+    padding: 16px;
+    flex-grow: 1;
+}
+
+.profile-bio-text {
+    font-size: 12px;
+    color: rgb(130, 130, 140);
+    -unity-font-style: italic;
+    white-space: normal;
+}

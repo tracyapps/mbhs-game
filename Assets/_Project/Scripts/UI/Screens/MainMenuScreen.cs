@@ -13,6 +13,7 @@ namespace MBHS.UI.Screens
         private Button _btnNewGame;
         private Button _btnContinue;
         private Button _btnFormationEditor;
+        private Button _btnSongLibrary;
         private Button _btnSettings;
         private Button _btnQuit;
 
@@ -21,19 +22,21 @@ namespace MBHS.UI.Screens
             _document = GetComponent<UIDocument>();
         }
 
-        private async void Start()
+        private void Start()
         {
             var root = _document.rootVisualElement;
 
             _btnNewGame = root.Q<Button>("btn-new-game");
             _btnContinue = root.Q<Button>("btn-continue");
             _btnFormationEditor = root.Q<Button>("btn-formation-editor");
+            _btnSongLibrary = root.Q<Button>("btn-song-library");
             _btnSettings = root.Q<Button>("btn-settings");
             _btnQuit = root.Q<Button>("btn-quit");
 
             _btnNewGame.clicked += OnNewGame;
             _btnContinue.clicked += OnContinue;
             _btnFormationEditor.clicked += OnFormationEditor;
+            _btnSongLibrary.clicked += OnSongLibrary;
             _btnSettings.clicked += OnSettings;
             _btnQuit.clicked += OnQuit;
 
@@ -51,12 +54,14 @@ namespace MBHS.UI.Screens
         private void OnNewGame()
         {
             Debug.Log("MainMenu: New Game");
+            BandManagementScreen.IsNewGame = true;
             SceneManager.LoadScene("BandManagement");
         }
 
         private void OnContinue()
         {
             Debug.Log("MainMenu: Continue");
+            BandManagementScreen.IsNewGame = false;
             SceneManager.LoadScene("BandManagement");
         }
 
@@ -64,6 +69,13 @@ namespace MBHS.UI.Screens
         {
             Debug.Log("MainMenu: Formation Editor");
             SceneManager.LoadScene("FormationEditor");
+        }
+
+        private void OnSongLibrary()
+        {
+            Debug.Log("MainMenu: Song Library");
+            SongLibraryScreen.ReturnScene = "MainMenu";
+            SceneManager.LoadScene("SongLibrary");
         }
 
         private void OnSettings()

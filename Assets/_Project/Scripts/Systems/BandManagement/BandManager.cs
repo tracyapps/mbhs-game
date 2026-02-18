@@ -102,6 +102,15 @@ namespace MBHS.Systems.BandManagement
             OnRosterChanged?.Invoke(_roster);
         }
 
+        public void SetNickname(string memberId, string nickname)
+        {
+            var member = _roster?.GetMemberById(memberId);
+            if (member == null) return;
+
+            member.Nickname = nickname;
+            OnMemberUpdated?.Invoke(member);
+        }
+
         public void TrainMember(string memberId, SkillType skill, float amount)
         {
             var member = _roster?.GetMemberById(memberId);

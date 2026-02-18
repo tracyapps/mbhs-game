@@ -15,6 +15,7 @@ namespace MBHS.Data.Models
         public string SongId;
         public float TotalDurationBeats;
         public List<Formation> Formations = new();
+        public AudioTimelineData AudioTimeline = new();
         public string CreatedDate;
         public string LastModifiedDate;
 

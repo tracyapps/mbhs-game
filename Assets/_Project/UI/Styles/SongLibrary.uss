@@ -1,0 +1,555 @@
+/* ==========================================================================
+   Song Library Styles
+   ========================================================================== */
+
+/* --- Root Layout --- */
+
+.song-root {
+    flex-grow: 1;
+    background-color: rgb(20, 22, 30);
+    flex-direction: column;
+}
+
+/* --- Top Bar --- */
+
+.top-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: rgb(28, 30, 42);
+    border-bottom-width: 2px;
+    border-bottom-color: rgb(50, 55, 75);
+    min-height: 56px;
+}
+
+.top-bar-left {
+    flex-direction: row;
+    align-items: center;
+}
+
+.top-bar-center {
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.top-bar-right {
+    flex-direction: row;
+    align-items: center;
+}
+
+.screen-title {
+    font-size: 20px;
+    color: rgb(220, 200, 120);
+    -unity-font-style: bold;
+    letter-spacing: 1px;
+}
+
+/* --- Nav Buttons --- */
+
+.nav-btn {
+    height: 36px;
+    padding: 0 16px;
+    background-color: rgb(45, 50, 70);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(70, 80, 110);
+    color: rgb(200, 200, 215);
+    font-size: 13px;
+    -unity-font-style: bold;
+    transition-duration: 0.12s;
+}
+
+.nav-btn:hover {
+    background-color: rgb(60, 70, 100);
+    border-color: rgb(100, 120, 180);
+}
+
+.nav-btn:active {
+    background-color: rgb(35, 40, 60);
+}
+
+.nav-btn.select {
+    background-color: rgb(50, 90, 60);
+    border-color: rgb(80, 140, 90);
+}
+
+.nav-btn.select:hover {
+    background-color: rgb(60, 110, 70);
+    border-color: rgb(100, 170, 110);
+}
+
+.nav-btn:disabled {
+    opacity: 0.4;
+}
+
+/* --- Main Content --- */
+
+.main-content {
+    flex-grow: 1;
+    flex-direction: row;
+    padding: 10px;
+}
+
+/* --- Panels --- */
+
+.panel {
+    background-color: rgb(28, 30, 42);
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: rgb(50, 55, 75);
+}
+
+.panel-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(50, 55, 75);
+}
+
+.panel-title {
+    font-size: 14px;
+    color: rgb(180, 180, 200);
+    -unity-font-style: bold;
+    letter-spacing: 1px;
+}
+
+.panel-count {
+    font-size: 12px;
+    color: rgb(130, 130, 155);
+}
+
+/* --- Left Panel: Song List --- */
+
+.song-list-panel {
+    width: 420px;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+/* --- Category Tabs --- */
+
+.category-tabs {
+    flex-direction: row;
+    padding: 6px 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(40, 42, 56);
+}
+
+.category-tab {
+    height: 28px;
+    padding: 0 14px;
+    margin: 2px 4px;
+    background-color: rgb(38, 40, 54);
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: rgb(50, 55, 70);
+    color: rgb(150, 150, 170);
+    font-size: 12px;
+    -unity-font-style: bold;
+    transition-duration: 0.1s;
+}
+
+.category-tab:hover {
+    background-color: rgb(50, 55, 75);
+    color: rgb(200, 200, 215);
+}
+
+.category-tab.active {
+    background-color: rgb(55, 65, 95);
+    border-color: rgb(90, 110, 160);
+    color: rgb(220, 220, 240);
+}
+
+.category-tab:disabled {
+    opacity: 0.35;
+}
+
+/* --- Search Bar --- */
+
+.search-bar {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(40, 42, 56);
+}
+
+.search-field {
+    flex-grow: 1;
+    height: 30px;
+    background-color: rgb(35, 38, 52);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(55, 60, 80);
+    color: rgb(210, 210, 225);
+    font-size: 13px;
+    padding: 0 10px;
+}
+
+.search-field > .unity-text-field__input {
+    background-color: rgb(35, 38, 52);
+    border-width: 0;
+    color: rgb(210, 210, 225);
+    padding: 0 10px;
+}
+
+.search-field:focus > .unity-text-field__input {
+    border-color: rgb(90, 110, 160);
+}
+
+/* --- Tag Filters --- */
+
+.tag-filter-bar {
+    flex-direction: row;
+    padding: 6px 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(40, 42, 56);
+    flex-wrap: wrap;
+}
+
+.tag-chip {
+    height: 26px;
+    padding: 0 10px;
+    margin: 2px;
+    background-color: rgb(38, 40, 54);
+    border-radius: 13px;
+    border-width: 1px;
+    border-color: rgb(50, 55, 70);
+    color: rgb(150, 150, 170);
+    font-size: 11px;
+    transition-duration: 0.1s;
+}
+
+.tag-chip:hover {
+    background-color: rgb(50, 55, 75);
+    color: rgb(200, 200, 215);
+}
+
+.tag-chip.active {
+    background-color: rgb(55, 65, 95);
+    border-color: rgb(90, 110, 160);
+    color: rgb(220, 220, 240);
+}
+
+/* --- Song List --- */
+
+.song-list {
+    flex-grow: 1;
+}
+
+.song-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(35, 37, 50);
+    transition-duration: 0.1s;
+}
+
+.song-row:hover {
+    background-color: rgb(35, 38, 52);
+}
+
+.song-row-info {
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.song-row-title {
+    font-size: 14px;
+    color: rgb(210, 210, 225);
+    -unity-font-style: bold;
+}
+
+.song-row-composer {
+    font-size: 11px;
+    color: rgb(140, 140, 165);
+    margin-top: 2px;
+}
+
+.song-row-meta {
+    flex-direction: row;
+    align-items: center;
+}
+
+.song-row-difficulty {
+    font-size: 11px;
+    color: rgb(160, 160, 180);
+    width: 40px;
+    -unity-text-align: middle-center;
+    margin-right: 8px;
+}
+
+.song-row-duration {
+    font-size: 11px;
+    color: rgb(130, 130, 155);
+    width: 50px;
+    -unity-text-align: middle-right;
+}
+
+/* --- Right Panel: Song Preview --- */
+
+.preview-panel {
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.preview-empty {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-empty-text {
+    font-size: 14px;
+    color: rgb(100, 100, 125);
+    -unity-font-style: italic;
+}
+
+/* --- Song Info Section --- */
+
+.song-info-section {
+    padding: 20px;
+}
+
+.song-preview-title {
+    font-size: 24px;
+    color: rgb(230, 230, 240);
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+}
+
+.song-preview-composer {
+    font-size: 14px;
+    color: rgb(160, 160, 180);
+    margin-bottom: 2px;
+}
+
+.song-preview-arranger {
+    font-size: 12px;
+    color: rgb(130, 130, 155);
+    margin-bottom: 16px;
+    -unity-font-style: italic;
+}
+
+/* --- Difficulty Indicator --- */
+
+.difficulty-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.difficulty-label {
+    font-size: 12px;
+    color: rgb(160, 160, 180);
+    width: 70px;
+}
+
+.difficulty-bar-bg {
+    flex-grow: 1;
+    height: 14px;
+    background-color: rgb(35, 38, 52);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 10px;
+    max-width: 200px;
+}
+
+.difficulty-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition-duration: 0.3s;
+}
+
+.difficulty-value {
+    font-size: 12px;
+    color: rgb(190, 190, 210);
+    width: 36px;
+    -unity-text-align: middle-right;
+    -unity-font-style: bold;
+}
+
+/* --- Song Metadata Grid --- */
+
+.song-meta-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.meta-block {
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+
+.meta-block-value {
+    font-size: 22px;
+    -unity-font-style: bold;
+    color: rgb(220, 220, 235);
+}
+
+.meta-block-label {
+    font-size: 11px;
+    color: rgb(130, 130, 155);
+    margin-top: 2px;
+}
+
+/* --- Tags Section --- */
+
+.tags-section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.song-tag {
+    padding: 3px 10px;
+    margin: 2px;
+    background-color: rgb(40, 45, 65);
+    border-radius: 10px;
+    font-size: 11px;
+    color: rgb(160, 160, 180);
+}
+
+/* --- Description --- */
+
+.song-description {
+    font-size: 13px;
+    color: rgb(160, 160, 180);
+    white-space: normal;
+    margin-bottom: 12px;
+}
+
+/* --- Preview Player --- */
+
+.player-section {
+    padding: 16px 20px;
+    border-top-width: 1px;
+    border-top-color: rgb(50, 55, 75);
+}
+
+.player-title {
+    font-size: 13px;
+    color: rgb(180, 180, 200);
+    -unity-font-style: bold;
+    margin-bottom: 10px;
+}
+
+.player-controls {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.player-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: rgb(50, 90, 60);
+    border-width: 1px;
+    border-color: rgb(80, 140, 90);
+    color: rgb(220, 240, 220);
+    font-size: 16px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-right: 12px;
+    transition-duration: 0.12s;
+}
+
+.player-btn:hover {
+    background-color: rgb(60, 110, 70);
+    border-color: rgb(100, 170, 110);
+}
+
+.player-btn:disabled {
+    opacity: 0.4;
+    background-color: rgb(45, 50, 70);
+    border-color: rgb(70, 80, 110);
+}
+
+.player-progress-bg {
+    flex-grow: 1;
+    height: 8px;
+    background-color: rgb(35, 38, 52);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.player-progress-fill {
+    height: 100%;
+    background-color: rgb(80, 140, 220);
+    border-radius: 4px;
+    width: 0;
+}
+
+.player-time {
+    font-size: 12px;
+    color: rgb(160, 160, 180);
+    width: 45px;
+    -unity-text-align: middle-right;
+}
+
+.player-status {
+    font-size: 11px;
+    color: rgb(220, 160, 60);
+    -unity-font-style: italic;
+    margin-top: 4px;
+    min-height: 16px;
+}
+
+/* --- Stem Toggles --- */
+
+.stems-section {
+    padding: 12px 20px;
+    border-top-width: 1px;
+    border-top-color: rgb(45, 48, 65);
+}
+
+.stems-title {
+    font-size: 13px;
+    color: rgb(180, 180, 200);
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+}
+
+.stem-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.stem-toggle {
+    margin-right: 10px;
+}
+
+.stem-label {
+    font-size: 12px;
+    color: rgb(180, 180, 200);
+}
+
+/* --- Status Bar --- */
+
+.status-bar {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 20px;
+    background-color: rgb(24, 26, 36);
+    border-top-width: 1px;
+    border-top-color: rgb(45, 48, 65);
+    min-height: 28px;
+}
+
+.status-text {
+    font-size: 11px;
+    color: rgb(130, 130, 155);
+    flex-grow: 1;
+}

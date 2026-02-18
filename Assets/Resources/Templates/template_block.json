@@ -1,0 +1,33 @@
+{
+    "Id": "template_block",
+    "Name": "Block Formation",
+    "Description": "Classic rectangular block. 6 columns by 4 rows, evenly spaced.",
+    "AuthorId": "builtin",
+    "SlotCount": 24,
+    "Slots": [
+        { "SlotIndex": 0, "FieldX": 44.0, "FieldY": 20.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 1, "FieldX": 46.4, "FieldY": 20.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 2, "FieldX": 48.8, "FieldY": 20.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 3, "FieldX": 51.2, "FieldY": 20.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 4, "FieldX": 53.6, "FieldY": 20.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 5, "FieldX": 56.0, "FieldY": 20.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 6, "FieldX": 44.0, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 7, "FieldX": 46.4, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 8, "FieldX": 48.8, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 9, "FieldX": 51.2, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 10, "FieldX": 53.6, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 11, "FieldX": 56.0, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 12, "FieldX": 44.0, "FieldY": 28.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 13, "FieldX": 46.4, "FieldY": 28.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 14, "FieldX": 48.8, "FieldY": 28.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 15, "FieldX": 51.2, "FieldY": 28.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 16, "FieldX": 53.6, "FieldY": 28.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 17, "FieldX": 56.0, "FieldY": 28.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 18, "FieldX": 44.0, "FieldY": 32.0, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 19, "FieldX": 46.4, "FieldY": 32.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 20, "FieldX": 48.8, "FieldY": 32.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 21, "FieldX": 51.2, "FieldY": 32.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 22, "FieldX": 53.6, "FieldY": 32.0, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 23, "FieldX": 50.0, "FieldY": 16.0, "FacingAngle": 180, "PreferredFamily": 5 }
+    ]
+}

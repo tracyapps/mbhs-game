@@ -1,0 +1,138 @@
+{
+    "Entries": [
+        {
+            "Id": "song_stars_and_stripes",
+            "Title": "Stars and Stripes Forever",
+            "Author": "John Philip Sousa",
+            "Type": 0,
+            "AddressableKey": "Audio_Song_StarsAndStripes_FullMix",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "The most famous American march, composed in 1896. Features an iconic piccolo obbligato in the final strain.",
+            "Tags": ["march", "patriotic", "classic"]
+        },
+        {
+            "Id": "song_washington_post",
+            "Title": "Washington Post March",
+            "Author": "John Philip Sousa",
+            "Type": 0,
+            "AddressableKey": "Audio_Song_WashingtonPost_FullMix",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "A lively 6/8 march composed in 1889 for the newspaper's essay contest awards ceremony.",
+            "Tags": ["march", "classic"]
+        },
+        {
+            "Id": "song_semper_fidelis",
+            "Title": "Semper Fidelis",
+            "Author": "John Philip Sousa",
+            "Type": 0,
+            "AddressableKey": "Audio_Song_SemperFidelis_FullMix",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "The official march of the United States Marine Corps, composed in 1888.",
+            "Tags": ["march", "military", "classic"]
+        },
+        {
+            "Id": "song_el_capitan",
+            "Title": "El Capitan March",
+            "Author": "John Philip Sousa",
+            "Type": 0,
+            "AddressableKey": "Audio_Song_ElCapitan_FullMix",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "Based on the operetta of the same name, this spirited march was composed in 1896.",
+            "Tags": ["march", "classic"]
+        },
+        {
+            "Id": "song_national_emblem",
+            "Title": "National Emblem March",
+            "Author": "E.E. Bagley",
+            "Type": 0,
+            "AddressableKey": "Audio_Song_NationalEmblem_FullMix",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "A classic American march from 1906. Its trio section quotes The Star-Spangled Banner.",
+            "Tags": ["march", "patriotic", "classic"]
+        },
+        {
+            "Id": "template_block",
+            "Title": "Block Formation",
+            "Author": "builtin",
+            "Type": 1,
+            "AddressableKey": "",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "Standard 6x4 block grid centered on the 50. Classic marching band formation.",
+            "Tags": ["formation", "classic", "grid"]
+        },
+        {
+            "Id": "template_line",
+            "Title": "Parade Line",
+            "Author": "builtin",
+            "Type": 1,
+            "AddressableKey": "",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "Two rows across the field at the hash marks. Classic parade formation.",
+            "Tags": ["formation", "classic", "parade"]
+        },
+        {
+            "Id": "template_diamond",
+            "Title": "Diamond Formation",
+            "Author": "builtin",
+            "Type": 1,
+            "AddressableKey": "",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "Diamond shape centered on the 50-yard line. Concentric rings outward.",
+            "Tags": ["formation", "geometric", "classic"]
+        },
+        {
+            "Id": "template_wedge",
+            "Title": "Wedge Formation",
+            "Author": "builtin",
+            "Type": 1,
+            "AddressableKey": "",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "V-shaped arrow pointing toward the home sideline. Drum major at the tip.",
+            "Tags": ["formation", "geometric", "arrow"]
+        },
+        {
+            "Id": "template_scatter",
+            "Title": "Concert Scatter",
+            "Author": "builtin",
+            "Type": 1,
+            "AddressableKey": "",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "Artistic scattered positions across the field. Loosely grouped by section.",
+            "Tags": ["formation", "artistic", "concert"]
+        },
+        {
+            "Id": "template_v_shape",
+            "Title": "V-Shape",
+            "Author": "builtin",
+            "Type": 1,
+            "AddressableKey": "",
+            "ThumbnailAddressableKey": "",
+            "IsOwned": true,
+            "IsBuiltIn": true,
+            "Description": "Inverted V pointing away from home side. Symmetrical mirrored layout.",
+            "Tags": ["formation", "geometric", "symmetrical"]
+        }
+    ],
+    "Version": "0.1.0",
+    "LastUpdated": "2026-02-18T00:00:00Z"
+}

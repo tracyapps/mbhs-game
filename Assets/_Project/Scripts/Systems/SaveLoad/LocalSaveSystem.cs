@@ -13,9 +13,11 @@ namespace MBHS.Systems.SaveLoad
         private const string RosterFileName = "roster.json";
         private const string ProgressFileName = "progress.json";
         private const string ChartsDirName = "charts";
+        private const string TemplatesDirName = "templates";
 
         private string _savePath;
         private string _chartsPath;
+        private string _templatesPath;
 
         private BandRosterData _cachedRoster;
         private PlayerProgress _cachedProgress;
@@ -26,6 +28,7 @@ namespace MBHS.Systems.SaveLoad
         {
             _savePath = Path.Combine(Application.persistentDataPath, "saves");
             _chartsPath = Path.Combine(_savePath, ChartsDirName);
+            _templatesPath = Path.Combine(_savePath, TemplatesDirName);
         }
 
         public Task LoadAsync()
@@ -169,6 +172,54 @@ namespace MBHS.Systems.SaveLoad
             return Task.FromResult(_cachedProgress);
         }
 
+        // Formation Templates
+        public Task SaveFormationTemplate(FormationTemplate template)
+        {
+            EnsureDirectoriesExist();
+
+            if (string.IsNullOrEmpty(template.Id))
+                template.Id = Guid.NewGuid().ToString();
+
+            var json = JsonUtility.ToJson(template, true);
+            var fileName = $"template_{template.Id}.json";
+            WriteFile(Path.Combine(_templatesPath, fileName), json);
+            return Task.CompletedTask;
+        }
+
+        public Task<List<FormationTemplate>> ListUserTemplates()
+        {
+            var templates = new List<FormationTemplate>();
+            EnsureDirectoriesExist();
+
+            var files = Directory.GetFiles(_templatesPath, "template_*.json");
+            foreach (var file in files)
+            {
+                try
+                {
+                    var json = File.ReadAllText(file);
+                    var template = JsonUtility.FromJson<FormationTemplate>(json);
+                    templates.Add(template);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning($"LocalSaveSystem: Failed to read template {file}: {e.Message}");
+                }
+            }
+
+            return Task.FromResult(templates.OrderBy(t => t.Name).ToList());
+        }
+
+        public Task DeleteFormationTemplate(string templateId)
+        {
+            var fileName = $"template_{templateId}.json";
+            var path = Path.Combine(_templatesPath, fileName);
+
+            if (File.Exists(path))
+                File.Delete(path);
+
+            return Task.CompletedTask;
+        }
+
         // Helpers
         private void EnsureDirectoriesExist()
         {
@@ -176,6 +227,8 @@ namespace MBHS.Systems.SaveLoad
                 Directory.CreateDirectory(_savePath);
             if (!Directory.Exists(_chartsPath))
                 Directory.CreateDirectory(_chartsPath);
+            if (!Directory.Exists(_templatesPath))
+                Directory.CreateDirectory(_templatesPath);
         }
 
         private void WriteFile(string path, string content)

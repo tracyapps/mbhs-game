@@ -1,0 +1,33 @@
+{
+    "Id": "template_diamond",
+    "Name": "Diamond Formation",
+    "Description": "Diamond shape centered on the 50-yard line. Concentric rings outward.",
+    "AuthorId": "builtin",
+    "SlotCount": 24,
+    "Slots": [
+        { "SlotIndex": 0, "FieldX": 50.0, "FieldY": 16.0, "FacingAngle": 0, "PreferredFamily": 5 },
+        { "SlotIndex": 1, "FieldX": 47.0, "FieldY": 20.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 2, "FieldX": 53.0, "FieldY": 20.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 3, "FieldX": 50.0, "FieldY": 20.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 4, "FieldX": 44.0, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 5, "FieldX": 50.0, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 6, "FieldX": 56.0, "FieldY": 24.0, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 7, "FieldX": 41.0, "FieldY": 26.67, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 8, "FieldX": 47.0, "FieldY": 26.67, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 9, "FieldX": 53.0, "FieldY": 26.67, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 10, "FieldX": 59.0, "FieldY": 26.67, "FacingAngle": 0, "PreferredFamily": 0 },
+        { "SlotIndex": 11, "FieldX": 44.0, "FieldY": 30.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 12, "FieldX": 50.0, "FieldY": 30.0, "FacingAngle": 0, "PreferredFamily": 1 },
+        { "SlotIndex": 13, "FieldX": 56.0, "FieldY": 30.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 14, "FieldX": 47.0, "FieldY": 33.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 15, "FieldX": 53.0, "FieldY": 33.0, "FacingAngle": 0, "PreferredFamily": 2 },
+        { "SlotIndex": 16, "FieldX": 50.0, "FieldY": 36.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 17, "FieldX": 46.0, "FieldY": 26.67, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 18, "FieldX": 54.0, "FieldY": 26.67, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 19, "FieldX": 48.0, "FieldY": 22.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 20, "FieldX": 52.0, "FieldY": 22.0, "FacingAngle": 0, "PreferredFamily": 3 },
+        { "SlotIndex": 21, "FieldX": 45.0, "FieldY": 28.0, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 22, "FieldX": 55.0, "FieldY": 28.0, "FacingAngle": 0, "PreferredFamily": 4 },
+        { "SlotIndex": 23, "FieldX": 50.0, "FieldY": 26.67, "FacingAngle": 0, "PreferredFamily": 3 }
+    ]
+}

@@ -7,6 +7,7 @@ using MBHS.Data.Enums;
 using MBHS.Data.Models;
 using MBHS.Systems.FormationEditor.Commands;
 using MBHS.Systems.BandManagement;
+using MBHS.Systems.ContentPipeline;
 using MBHS.Systems.SaveLoad;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -55,13 +56,23 @@ namespace MBHS.Systems.FormationEditor
         // State
         private EditorTool _activeTool = EditorTool.Select;
         private readonly HashSet<string> _selectedMemberIds = new();
+        private string _soloMemberId;
         private string _dragMemberId;
         private Vector2 _dragStartFieldPos;
+        private Vector2 _dragStartScreenPos;
         private bool _isDragging;
+        private bool _isDragConfirmed; // true once mouse moves past threshold
+        private const float DragThresholdPx = 5f;
         private bool _isBoxSelecting;
         private Vector2 _boxSelectStart;
         private VisualElement _selectionBox;
         private bool _snapEnabled = true;
+        private bool _hasUnsavedChanges;
+
+        // Overlays
+        private ConfirmationDialog _confirmDialog;
+        private LoadChartOverlay _loadChartOverlay;
+        private TemplateBrowserOverlay _templateBrowserOverlay;
 
         // Field rendering
         private float _fieldScale = 1f; // pixels per yard
@@ -69,8 +80,10 @@ namespace MBHS.Systems.FormationEditor
         private readonly Dictionary<string, VisualElement> _memberDots = new();
         private int _placementIndex; // which roster member to place next
 
-        // Events for the 3D preview
+        // Events for the 3D preview and timeline
         public event Action OnFormationDisplayChanged;
+        public event Action<int> OnFormationSelected;
+        public event Action<HashSet<string>> OnSelectionChanged;
 
         public FormationEditorController(
             IFormationSystem formationSystem,
@@ -117,6 +130,7 @@ namespace MBHS.Systems.FormationEditor
             // Initial state
             UpdatePropertyPanelVisibility();
             _commandHistory.OnHistoryChanged += UpdateUndoRedoButtons;
+            _commandHistory.OnHistoryChanged += () => _hasUnsavedChanges = true;
             UpdateUndoRedoButtons();
         }
 
@@ -134,8 +148,14 @@ namespace MBHS.Systems.FormationEditor
 
             root.Q<Button>("btn-zoom-fit").clicked += ZoomToFit;
             root.Q<Button>("btn-add-formation").clicked += AddNewFormation;
+            root.Q<Button>("btn-duplicate-previous")?.RegisterCallback<ClickEvent>(
+                _ => DuplicateFormation(null));
+            root.Q<Button>("btn-duplicate-formation")?.RegisterCallback<ClickEvent>(
+                _ => DuplicateFormation(_formationSystem.CurrentFormation));
+            root.Q<Button>("btn-new-chart")?.RegisterCallback<ClickEvent>(_ => NewChart());
+            root.Q<Button>("btn-templates")?.RegisterCallback<ClickEvent>(_ => OpenTemplateBrowser());
             root.Q<Button>("btn-save").clicked += SaveChart;
-            root.Q<Button>("btn-load").clicked += LoadChart;
+            root.Q<Button>("btn-load").clicked += OpenLoadOverlay;
         }
 
         private void BindFieldEvents()
@@ -145,6 +165,18 @@ namespace MBHS.Systems.FormationEditor
             _fieldContainer.RegisterCallback<PointerMoveEvent>(OnFieldPointerMove);
             _fieldContainer.RegisterCallback<PointerUpEvent>(OnFieldPointerUp);
             _fieldContainer.RegisterCallback<WheelEvent>(OnFieldScroll);
+
+            // Escape key: clear solo mode or selection
+            _fieldContainer.RegisterCallback<KeyDownEvent>(evt =>
+            {
+                if (evt.keyCode == KeyCode.Escape)
+                {
+                    if (_soloMemberId != null)
+                        ClearSoloMember();
+                    else if (_selectedMemberIds.Count > 0)
+                        ClearSelection();
+                }
+            });
 
             // Create selection box element (hidden by default)
             _selectionBox = new VisualElement();
@@ -228,6 +260,69 @@ namespace MBHS.Systems.FormationEditor
                 RefreshFormationList();
                 RefreshFieldDisplay();
                 UpdateFormationProperties();
+            };
+        }
+
+        public void SetupOverlays(VisualElement root, IContentCatalog catalog, ISaveSystem saveSystem)
+        {
+            _confirmDialog = new ConfirmationDialog();
+            root.Add(_confirmDialog);
+
+            _loadChartOverlay = new LoadChartOverlay(saveSystem, _confirmDialog);
+            root.Add(_loadChartOverlay);
+
+            _loadChartOverlay.OnChartSelected += async chartId =>
+            {
+                var chart = await saveSystem.LoadDrillChart(chartId);
+                if (chart != null)
+                {
+                    _formationSystem.LoadChart(chart);
+                    _hasUnsavedChanges = false;
+                    _statusLabel.text = $"Loaded: {chart.Name}";
+                }
+            };
+
+            _loadChartOverlay.OnNewChart += () =>
+            {
+                if (_hasUnsavedChanges)
+                {
+                    _confirmDialog.Show("Unsaved Changes",
+                        "You have unsaved changes. Create a new chart anyway?",
+                        CreateFreshChart, confirmText: "Discard", isDanger: true);
+                }
+                else
+                {
+                    CreateFreshChart();
+                }
+            };
+
+            _templateBrowserOverlay = new TemplateBrowserOverlay(catalog, saveSystem, _confirmDialog);
+            root.Add(_templateBrowserOverlay);
+
+            _templateBrowserOverlay.SetTemplateProvider(CreateTemplateFromCurrentFormation);
+
+            _templateBrowserOverlay.OnTemplateSelected += template =>
+            {
+                var formation = _formationSystem.CurrentFormation;
+                if (formation == null)
+                {
+                    _statusLabel.text = "Select a formation first";
+                    return;
+                }
+
+                var roster = _bandManager?.Roster;
+                if (roster == null)
+                {
+                    _statusLabel.text = "No roster loaded";
+                    return;
+                }
+
+                var activeMembers = roster.Members
+                    .Where(m => m.Status == MemberStatus.Active).ToList();
+                var mapping = TemplateAutoMapper.CreateMapping(template, activeMembers);
+                _formationSystem.ApplyTemplate(formation.Id, template, mapping);
+                _hasUnsavedChanges = true;
+                _statusLabel.text = $"Applied template: {template.Name} ({mapping.Count} members)";
             };
         }
 
@@ -413,6 +508,15 @@ namespace MBHS.Systems.FormationEditor
             if (_selectedMemberIds.Contains(pos.MemberId))
                 dot.AddToClassList("selected");
 
+            // Solo/ghost display
+            if (_soloMemberId != null)
+            {
+                if (pos.MemberId == _soloMemberId)
+                    dot.AddToClassList("solo-highlighted");
+                else
+                    dot.AddToClassList("ghosted");
+            }
+
             // Facing indicator
             var facing = new VisualElement();
             facing.AddToClassList("facing-indicator");
@@ -580,9 +684,13 @@ namespace MBHS.Systems.FormationEditor
             else
                 _selectedMemberIds.Add(memberId);
 
-            // Start drag
+            OnSelectionChanged?.Invoke(_selectedMemberIds);
+
+            // Prepare for potential drag (confirmed only after threshold)
             _dragMemberId = memberId;
             _isDragging = true;
+            _isDragConfirmed = false;
+            _dragStartScreenPos = evt.position;
             var formation2 = _formationSystem.CurrentFormation;
             var memberPos = formation2?.GetPositionForMember(memberId);
             if (memberPos != null)
@@ -600,10 +708,22 @@ namespace MBHS.Systems.FormationEditor
         {
             if (!_isDragging || _dragMemberId == null) return;
 
+            // Check drag threshold before committing to a drag
+            if (!_isDragConfirmed)
+            {
+                float dist = Vector2.Distance(evt.position, _dragStartScreenPos);
+                if (dist < DragThresholdPx)
+                    return; // Not past threshold yet, ignore movement
+
+                _isDragConfirmed = true;
+            }
+
             var formation = _formationSystem.CurrentFormation;
             if (formation == null) return;
 
-            Vector2 fieldPos = ScreenToFieldPos(evt.position);
+            // Convert screen-space position to field-container-local coordinates
+            Vector2 localPos = _fieldContainer.WorldToLocal(evt.position);
+            Vector2 fieldPos = ScreenToFieldPos(localPos);
             fieldPos = FieldCoordinates.ClampToField(fieldPos);
 
             if (_snapEnabled)
@@ -623,21 +743,24 @@ namespace MBHS.Systems.FormationEditor
         {
             if (_isDragging && _dragMemberId != null)
             {
-                var formation = _formationSystem.CurrentFormation;
-                var pos = formation?.GetPositionForMember(_dragMemberId);
-
-                if (pos != null && _dragStartFieldPos != pos.FieldPosition)
+                if (_isDragConfirmed)
                 {
-                    // Create undo command for the completed drag
-                    // First revert, then execute through command
-                    var endPos = pos.FieldPosition;
-                    pos.FieldPosition = _dragStartFieldPos;
+                    var formation = _formationSystem.CurrentFormation;
+                    var pos = formation?.GetPositionForMember(_dragMemberId);
 
-                    var cmd = new MoveMemberCommand(
-                        _formationSystem, formation.Id, _dragMemberId,
-                        _dragStartFieldPos, pos.FacingAngle,
-                        endPos, pos.FacingAngle);
-                    _commandHistory.Execute(cmd);
+                    if (pos != null && _dragStartFieldPos != pos.FieldPosition)
+                    {
+                        // Create undo command for the completed drag
+                        // First revert, then execute through command
+                        var endPos = pos.FieldPosition;
+                        pos.FieldPosition = _dragStartFieldPos;
+
+                        var cmd = new MoveMemberCommand(
+                            _formationSystem, formation.Id, _dragMemberId,
+                            _dragStartFieldPos, pos.FacingAngle,
+                            endPos, pos.FacingAngle);
+                        _commandHistory.Execute(cmd);
+                    }
                 }
 
                 if (_memberDots.TryGetValue(_dragMemberId, out var dot))
@@ -645,6 +768,7 @@ namespace MBHS.Systems.FormationEditor
             }
 
             _isDragging = false;
+            _isDragConfirmed = false;
             _dragMemberId = null;
         }
 
@@ -655,6 +779,7 @@ namespace MBHS.Systems.FormationEditor
         private void ClearSelection()
         {
             _selectedMemberIds.Clear();
+            OnSelectionChanged?.Invoke(_selectedMemberIds);
             RefreshFieldDisplay();
             UpdatePropertyPanelVisibility();
         }
@@ -697,6 +822,7 @@ namespace MBHS.Systems.FormationEditor
                 }
             }
 
+            OnSelectionChanged?.Invoke(_selectedMemberIds);
             RefreshFieldDisplay();
             UpdatePropertyPanelVisibility();
         }
@@ -783,6 +909,7 @@ namespace MBHS.Systems.FormationEditor
                 {
                     _formationSystem.SetCurrentFormation(index);
                     ClearSelection();
+                    OnFormationSelected?.Invoke(index);
                 });
 
                 _formationList.Add(item);
@@ -814,6 +941,54 @@ namespace MBHS.Systems.FormationEditor
                     _formationSystem.ActiveChart.Formations.Count - 1);
                 _statusLabel.text = $"Added {formation.Label}";
             }
+        }
+
+        private void DuplicateFormation(Formation sourceFormation)
+        {
+            var chart = _formationSystem.ActiveChart;
+            if (chart == null) return;
+
+            // If no source specified, use the last formation (for "Duplicate Previous")
+            if (sourceFormation == null)
+            {
+                if (chart.Formations.Count == 0)
+                {
+                    _statusLabel.text = "No formation to duplicate";
+                    return;
+                }
+                sourceFormation = chart.Formations[^1];
+            }
+
+            // Calculate start beat after the last formation
+            float startBeat = 0f;
+            if (chart.Formations.Count > 0)
+            {
+                var last = chart.Formations[^1];
+                startBeat = last.StartBeat + last.DurationBeats + 8f;
+            }
+
+            int formationNumber = chart.Formations.Count + 1;
+            var newFormation = _formationSystem.AddFormation(
+                startBeat, sourceFormation.DurationBeats,
+                $"{sourceFormation.Label} (copy)");
+
+            if (newFormation == null) return;
+
+            // Copy all member positions from the source
+            var copiedPositions = sourceFormation.Positions
+                .Select(p => new MemberPosition
+                {
+                    MemberId = p.MemberId,
+                    FieldX = p.FieldX,
+                    FieldY = p.FieldY,
+                    FacingAngle = p.FacingAngle
+                })
+                .ToList();
+
+            _formationSystem.SetMemberPositionsBatch(newFormation.Id, copiedPositions);
+
+            _formationSystem.SetCurrentFormation(chart.Formations.Count - 1);
+            _statusLabel.text = $"Duplicated \"{sourceFormation.Label}\" → \"{newFormation.Label}\"";
         }
 
         // =====================================================================
@@ -902,29 +1077,109 @@ namespace MBHS.Systems.FormationEditor
 
             var saveSystem = ServiceLocator.Get<ISaveSystem>();
             await saveSystem.SaveDrillChart(chart);
+
+            // Also save roster alongside chart
+            var roster = _bandManager?.Roster;
+            if (roster != null)
+                await saveSystem.SaveBandRoster(roster);
+
+            _hasUnsavedChanges = false;
             _statusLabel.text = $"Saved: {chart.Name}";
         }
 
-        private async void LoadChart()
+        private void OpenLoadOverlay()
         {
-            var saveSystem = ServiceLocator.Get<ISaveSystem>();
-            var charts = await saveSystem.ListDrillCharts();
+            _loadChartOverlay?.Open();
+        }
 
-            if (charts.Count == 0)
+        private void OpenTemplateBrowser()
+        {
+            _templateBrowserOverlay?.Open();
+        }
+
+        private void NewChart()
+        {
+            if (_hasUnsavedChanges)
             {
-                _statusLabel.text = "No saved charts found";
-                return;
+                _confirmDialog?.Show("Unsaved Changes",
+                    "You have unsaved changes. Create a new chart anyway?",
+                    CreateFreshChart, confirmText: "Discard", isDanger: true);
+            }
+            else
+            {
+                CreateFreshChart();
+            }
+        }
+
+        private void CreateFreshChart()
+        {
+            _formationSystem.CreateNewChart("New Show", "");
+            _formationSystem.AddFormation(0f, 16f, "Opening Set");
+            _formationSystem.SetCurrentFormation(0);
+            _hasUnsavedChanges = false;
+            _statusLabel.text = "New chart created";
+        }
+
+        private FormationTemplate CreateTemplateFromCurrentFormation()
+        {
+            var formation = _formationSystem.CurrentFormation;
+            if (formation == null || formation.Positions.Count == 0) return null;
+
+            var template = new FormationTemplate
+            {
+                Id = Guid.NewGuid().ToString(),
+                SlotCount = formation.Positions.Count
+            };
+
+            for (int i = 0; i < formation.Positions.Count; i++)
+            {
+                var pos = formation.Positions[i];
+                var member = _bandManager?.Roster?.GetMemberById(pos.MemberId);
+                var family = member != null
+                    ? GetInstrumentFamily(member.AssignedInstrument)
+                    : InstrumentFamily.Brass;
+
+                template.Slots.Add(new TemplateSlot
+                {
+                    SlotIndex = i,
+                    FieldX = pos.FieldX,
+                    FieldY = pos.FieldY,
+                    FacingAngle = pos.FacingAngle,
+                    PreferredFamily = family
+                });
             }
 
-            // Load most recent chart
-            var mostRecent = charts[0];
-            var chart = await saveSystem.LoadDrillChart(mostRecent.Id);
+            return template;
+        }
 
-            if (chart != null)
+        private static InstrumentFamily GetInstrumentFamily(InstrumentType type)
+        {
+            return type switch
             {
-                _formationSystem.LoadChart(chart);
-                _statusLabel.text = $"Loaded: {chart.Name}";
-            }
+                InstrumentType.Trumpet or InstrumentType.Trombone or
+                InstrumentType.FrenchHorn or InstrumentType.Tuba or
+                InstrumentType.Sousaphone or InstrumentType.Baritone or
+                InstrumentType.Mellophone => InstrumentFamily.Brass,
+
+                InstrumentType.Flute or InstrumentType.Piccolo or
+                InstrumentType.Clarinet or InstrumentType.Saxophone
+                    => InstrumentFamily.Woodwind,
+
+                InstrumentType.SnareDrum or InstrumentType.BassDrum or
+                InstrumentType.TenorDrums or InstrumentType.Cymbals
+                    => InstrumentFamily.BatteryPercussion,
+
+                InstrumentType.Xylophone or InstrumentType.Marimba or
+                InstrumentType.Vibraphone or InstrumentType.Timpani
+                    => InstrumentFamily.FrontEnsemble,
+
+                InstrumentType.Flag or InstrumentType.Rifle or
+                InstrumentType.Saber => InstrumentFamily.ColorGuard,
+
+                InstrumentType.DrumMajor => InstrumentFamily.Leadership,
+
+                _ => InstrumentFamily.Brass
+            };
         }
 
         // =====================================================================
@@ -1022,8 +1277,69 @@ namespace MBHS.Systems.FormationEditor
             };
         }
 
+        // =====================================================================
+        // Public API for Member Panel
+        // =====================================================================
+
+        public void SelectMember(string memberId)
+        {
+            _selectedMemberIds.Clear();
+            _selectedMemberIds.Add(memberId);
+            OnSelectionChanged?.Invoke(_selectedMemberIds);
+            RefreshFieldDisplay();
+            UpdateSelectedMemberProperties();
+            UpdatePropertyPanelVisibility();
+        }
+
+        public void CenterOnMember(string memberId)
+        {
+            var formation = _formationSystem.CurrentFormation;
+            if (formation == null) return;
+
+            var pos = formation.GetPositionForMember(memberId);
+            if (pos == null) return;
+
+            float containerWidth = _fieldContainer.resolvedStyle.width;
+            float containerHeight = _fieldContainer.resolvedStyle.height;
+            if (containerWidth <= 0 || containerHeight <= 0) return;
+
+            // Calculate offset to center this member
+            float pixelX = pos.FieldX * _fieldScale;
+            float pixelY = pos.FieldY * _fieldScale;
+            _fieldOffset = new Vector2(
+                containerWidth / 2f - pixelX,
+                containerHeight / 2f - pixelY);
+
+            float fieldPixelWidth = FieldCoordinates.FieldLengthYards * _fieldScale;
+            float fieldPixelHeight = FieldCoordinates.FieldWidthYards * _fieldScale;
+
+            _fieldViewport.style.left = _fieldOffset.x;
+            _fieldViewport.style.top = _fieldOffset.y;
+            _fieldViewport.style.width = fieldPixelWidth;
+            _fieldViewport.style.height = fieldPixelHeight;
+
+            DrawFieldMarkings();
+            RefreshFieldDisplay();
+        }
+
+        public void SetSoloMember(string memberId)
+        {
+            _soloMemberId = memberId;
+            RefreshFieldDisplay();
+        }
+
+        public void ClearSoloMember()
+        {
+            _soloMemberId = null;
+            RefreshFieldDisplay();
+        }
+
+        public bool IsSoloActive => _soloMemberId != null;
+        public string SoloMemberId => _soloMemberId;
+
         // Public accessors for the view
         public IFormationSystem FormationSystem => _formationSystem;
+        public IBandManager BandManager => _bandManager;
         public HashSet<string> SelectedMemberIds => _selectedMemberIds;
         public CommandHistory CommandHistory => _commandHistory;
 
@@ -1031,6 +1347,53 @@ namespace MBHS.Systems.FormationEditor
         {
             return _formationSystem.CurrentFormation?.Positions
                 ?? new List<MemberPosition>();
+        }
+
+        /// <summary>
+        /// Updates dot positions on the field using interpolated positions (tween preview).
+        /// Moves existing dots without full rebuild for smooth animation.
+        /// </summary>
+        public void ShowInterpolatedPositions(List<MemberPosition> positions)
+        {
+            if (positions == null || positions.Count == 0) return;
+
+            // If dots don't exist yet for these members, do a full refresh first
+            if (_memberDots.Count == 0 && positions.Count > 0)
+            {
+                // Create dots from interpolated positions
+                foreach (var pos in positions)
+                {
+                    var dot = CreateMemberDot(pos);
+                    _memberDots[pos.MemberId] = dot;
+                    _fieldViewport.Add(dot);
+                }
+                UpdateMembersPlacedLabel(positions.Count);
+                return;
+            }
+
+            // Move existing dots to interpolated positions
+            foreach (var pos in positions)
+            {
+                if (_memberDots.TryGetValue(pos.MemberId, out var dot))
+                {
+                    float pixelX = pos.FieldX * _fieldScale;
+                    float pixelY = pos.FieldY * _fieldScale;
+                    dot.style.left = pixelX;
+                    dot.style.top = pixelY;
+
+                    // Update facing
+                    var facing = dot.Q(className: "facing-indicator");
+                    if (facing != null)
+                        facing.style.rotate = new Rotate(Angle.Degrees(pos.FacingAngle));
+                }
+                else
+                {
+                    // New member appeared in interpolation - create dot
+                    var newDot = CreateMemberDot(pos);
+                    _memberDots[pos.MemberId] = newDot;
+                    _fieldViewport.Add(newDot);
+                }
+            }
         }
     }
 }

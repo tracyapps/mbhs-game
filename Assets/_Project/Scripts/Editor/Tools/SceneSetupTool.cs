@@ -33,7 +33,9 @@ namespace MBHS.Editor.Tools
             CreateMainMenuScene();
             CreateBandManagementScene();
             CreateFormationEditorScene();
+            CreateSongLibraryScene();
             CreateShowSimulationScene();
+            CreateMemberProfileScene();
 
             // Set build settings
             SetupBuildSettings();
@@ -157,6 +159,11 @@ namespace MBHS.Editor.Tools
             if (uxml != null)
                 uiDoc.visualTreeAsset = uxml;
 
+            // Add BandManagementScreen controller
+            var screenType = FindType("MBHS.UI.Screens.BandManagementScreen");
+            if (screenType != null)
+                uiObj.AddComponent(screenType);
+
             SaveScene(scene, "BandManagement");
         }
 
@@ -196,6 +203,30 @@ namespace MBHS.Editor.Tools
                 eventSystem.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
 
             SaveScene(scene, "FormationEditor");
+        }
+
+        private static void CreateSongLibraryScene()
+        {
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+
+            var camObj = CreateDefaultCamera();
+            CreateDefaultLighting();
+
+            // UI Document
+            var uiObj = new GameObject("SongLibraryUI");
+            var uiDoc = uiObj.AddComponent<UIDocument>();
+            AssignPanelSettings(uiDoc);
+
+            var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
+                "Assets/_Project/UI/Documents/SongLibrary.uxml");
+            if (uxml != null)
+                uiDoc.visualTreeAsset = uxml;
+
+            var screenType = FindType("MBHS.UI.Screens.SongLibraryScreen");
+            if (screenType != null)
+                uiObj.AddComponent(screenType);
+
+            SaveScene(scene, "SongLibrary");
         }
 
         private static void CreateShowSimulationScene()
@@ -251,6 +282,30 @@ namespace MBHS.Editor.Tools
             SaveScene(scene, "ShowSimulation");
         }
 
+        private static void CreateMemberProfileScene()
+        {
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+
+            var camObj = CreateDefaultCamera();
+            CreateDefaultLighting();
+
+            // UI Document
+            var uiObj = new GameObject("MemberProfileUI");
+            var uiDoc = uiObj.AddComponent<UIDocument>();
+            AssignPanelSettings(uiDoc);
+
+            var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
+                "Assets/_Project/UI/Documents/MemberProfile.uxml");
+            if (uxml != null)
+                uiDoc.visualTreeAsset = uxml;
+
+            var screenType = FindType("MBHS.UI.Screens.MemberProfileScreen");
+            if (screenType != null)
+                uiObj.AddComponent(screenType);
+
+            SaveScene(scene, "MemberProfile");
+        }
+
         // =====================================================================
         // Build Settings
         // =====================================================================
@@ -263,11 +318,13 @@ namespace MBHS.Editor.Tools
                 new($"{ScenesPath}/MainMenu.unity", true),
                 new($"{ScenesPath}/BandManagement.unity", true),
                 new($"{ScenesPath}/FormationEditor.unity", true),
-                new($"{ScenesPath}/ShowSimulation.unity", true)
+                new($"{ScenesPath}/SongLibrary.unity", true),
+                new($"{ScenesPath}/ShowSimulation.unity", true),
+                new($"{ScenesPath}/MemberProfile.unity", true)
             };
 
             EditorBuildSettings.scenes = scenes.ToArray();
-            Debug.Log("Build Settings updated with 5 scenes.");
+            Debug.Log("Build Settings updated with 7 scenes.");
         }
 
         // =====================================================================

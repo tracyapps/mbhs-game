@@ -1,0 +1,19 @@
+{
+    "Id": "song_stars_and_stripes",
+    "Title": "Stars and Stripes Forever",
+    "Composer": "John Philip Sousa",
+    "Arranger": "Standard Band Arrangement",
+    "BPM": 120.0,
+    "BeatsPerMeasure": 4,
+    "BeatUnit": 4,
+    "TotalBeats": 480.0,
+    "DurationSeconds": 240.0,
+    "Difficulty": 6,
+    "TempoChanges": [],
+    "FullMixAddressableKey": "Audio_Song_StarsAndStripes_FullMix",
+    "Stems": [
+        { "Family": 0, "AddressableKey": "Audio_Stem_StarsAndStripes_Brass" },
+        { "Family": 1, "AddressableKey": "Audio_Stem_StarsAndStripes_Woodwind" },
+        { "Family": 2, "AddressableKey": "Audio_Stem_StarsAndStripes_BatteryPercussion" }
+    ]
+}

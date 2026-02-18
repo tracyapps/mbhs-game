@@ -40,7 +40,15 @@ namespace MBHS.Runtime
         private async Task InitializeAddressables()
         {
             Debug.Log("GameBootstrapper: Initializing Addressables...");
-            await Addressables.InitializeAsync().Task;
+            try
+            {
+                await Addressables.InitializeAsync().Task;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning(
+                    $"GameBootstrapper: Addressables init failed (no content build yet?): {e.Message}");
+            }
         }
 
         private void RegisterServices()

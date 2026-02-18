@@ -15,6 +15,7 @@ namespace MBHS.Systems.BandManagement
         BandMemberData RecruitMember(RecruitCandidate candidate);
         void DismissMember(string memberId);
         void AssignInstrument(string memberId, InstrumentType instrument);
+        void SetNickname(string memberId, string nickname);
         void TrainMember(string memberId, SkillType skill, float amount);
 
         List<RecruitCandidate> GetAvailableRecruits(int count);
